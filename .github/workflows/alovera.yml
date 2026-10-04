@@ -39,12 +39,12 @@ jobs:
 
       - name: Create key.properties
         run: |
-          cat > android/key.properties <<EOF
+          cat > android/key.properties <<EOF2
           storeFile=my-release-key.jks
           storePassword=${{ secrets.KEYSTORE_PASSWORD }}
           keyAlias=${{ secrets.KEY_ALIAS }}
           keyPassword=${{ secrets.KEY_PASSWORD }}
-          EOF
+          EOF2
 
       - name: Build Debug APK
         run: |
@@ -65,21 +65,31 @@ jobs:
         run: |
           mkdir -p output
 
-          find android/app/build/outputs/apk/debug -name "*.apk" -exec cp {} output/Alovera-debug.apk \;
+          debug_apk=$(find android/app/build/outputs/apk/debug -type f -name "*.apk" | head -n 1)
+          release_apk=$(find android/app/build/outputs/apk/release -type f -name "*.apk" | head -n 1)
+          release_aab=$(find android/app/build/outputs/bundle/release -type f -name "*.aab" | head -n 1)
 
-          find android/app/build/outputs/apk/release -name "*.apk" -exec cp {} output/Alovera-release.apk \;
+          echo "Debug APK: $debug_apk"
+          echo "Release APK: $release_apk"
+          echo "Release AAB: $release_aab"
 
-          find android/app/build/outputs/bundle/release -name "*.aab" -exec cp {} output/Alovera-release.aab \;
+          test -n "$debug_apk"
+          test -n "$release_apk"
+          test -n "$release_aab"
+
+          cp "$debug_apk" output/Alovera-debug.apk
+          cp "$release_apk" output/Alovera-release.apk
+          cp "$release_aab" output/Alovera-release.aab
 
           echo "=== Generated files ==="
           ls -lh output
-          
+
       - name: Upload APK and AAB
         uses: actions/upload-artifact@v4
         with:
           name: Alovera-Android
           path: output/
-          
+
       - name: Clean signing files
         if: always()
         run: |
