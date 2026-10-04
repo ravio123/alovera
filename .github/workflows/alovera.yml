@@ -1,0 +1,87 @@
+name: Alovera Android Build
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Alovera APK & AAB
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Capacitor Android
+        run: npx cap sync android
+
+      - name: Decode Android Keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/my-release-key.jks
+
+      - name: Create key.properties
+        run: |
+          cat > android/key.properties <<EOF
+          storeFile=my-release-key.jks
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          EOF
+
+      - name: Build Debug APK
+        run: |
+          cd android
+          ./gradlew assembleDebug
+
+      - name: Build Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      - name: Build Release AAB
+        run: |
+          cd android
+          ./gradlew bundleRelease
+
+      - name: Prepare APK and AAB
+        run: |
+          mkdir -p output
+
+          find android/app/build/outputs/apk/debug -name "*.apk" -exec cp {} output/Alovera-debug.apk \;
+
+          find android/app/build/outputs/apk/release -name "*.apk" -exec cp {} output/Alovera-release.apk \;
+
+          find android/app/build/outputs/bundle/release -name "*.aab" -exec cp {} output/Alovera-release.aab \;
+
+          echo "=== Generated files ==="
+          ls -lh output
+          
+      - name: Upload APK and AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: Alovera-Android
+          path: output/
+          
+      - name: Clean signing files
+        if: always()
+        run: |
+          rm -f android/app/my-release-key.jks
+          rm -f android/key.properties

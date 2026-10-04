@@ -1,0 +1,15 @@
+node_modules/
+.gradle/
+build/
+.cxx/
+local.properties
+
+*.jks
+*.keystore
+*.p12
+
+.DS_Store
+Thumbs.db
+
+.idea/
+.vscode/
