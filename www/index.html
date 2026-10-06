@@ -3433,22 +3433,73 @@
             }
         });
 
-        async function downloadImageFromUrl(url, filename='nexaai-image.png') {
-            try {
-                const res = await fetch(url); 
-                const blob = await res.blob();
-                const blobUrl = URL.createObjectURL(blob);
-                const a = document.createElement('a'); 
-                a.href=blobUrl; 
-                a.download=filename; 
-                a.click();
-                URL.revokeObjectURL(blobUrl); 
-                showToast('Gambar diunduh');
-            } catch(e) { 
-                window.open(url,'_blank'); 
-                showToast('Dibuka di tab baru'); 
-            }
+       async function downloadImageFromUrl(url, filename='nexaai-image.png') {
+
+    try {
+
+        // ================================
+        // ANDROID APP
+        // ================================
+        if (window.AndroidDownload &&
+            typeof window.AndroidDownload.saveImage === 'function') {
+
+            window.onAndroidDownloadResult = function(success, message) {
+
+                if (success) {
+                    showToast('Gambar diunduh');
+                } else {
+                    showToast(message || 'Gagal menyimpan gambar');
+                }
+
+                window.onAndroidDownloadResult = null;
+            };
+
+            window.AndroidDownload.saveImage(url, filename);
+
+            return;
         }
+
+        // ================================
+        // WEB BROWSER
+        // ================================
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error('Gagal mengambil gambar');
+        }
+
+        const blob = await res.blob();
+
+        const blobUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+
+        a.href = blobUrl;
+        a.download = filename;
+
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        setTimeout(() => {
+            URL.revokeObjectURL(blobUrl);
+        }, 1000);
+
+        showToast('Gambar diunduh');
+
+    } catch (e) {
+
+        console.error('Download error:', e);
+
+        showToast('Gagal mengunduh gambar');
+    }
+}
+
+
+
+
+
+
 
         // ==================== LIGHTBOX ====================
         lightboxClose.onclick = ()=>{ 
