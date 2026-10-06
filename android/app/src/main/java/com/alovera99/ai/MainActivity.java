@@ -25,7 +25,10 @@ public class MainActivity extends BridgeActivity {
 
         webView.getSettings().setJavaScriptEnabled(true);
 
-        webView.addJavascriptInterface(new AndroidDownloadInterface(), "AndroidDownload");
+        webView.addJavascriptInterface(
+                new AndroidDownloadInterface(),
+                "AndroidDownload"
+        );
     }
 
     public class AndroidDownloadInterface {
@@ -41,6 +44,7 @@ public class MainActivity extends BridgeActivity {
 
                 try {
                     URL url = new URL(imageUrl);
+
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setConnectTimeout(30000);
@@ -63,8 +67,13 @@ public class MainActivity extends BridgeActivity {
                         mimeType = "image/png";
                     }
 
+                    // Buat nama file baru yang final/effectively final
+                    final String safeFileName;
+
                     if (fileName == null || fileName.trim().isEmpty()) {
-                        fileName = "alovera-image.png";
+                        safeFileName = "alovera-image.png";
+                    } else {
+                        safeFileName = fileName.trim();
                     }
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -73,7 +82,7 @@ public class MainActivity extends BridgeActivity {
 
                         values.put(
                                 MediaStore.Images.Media.DISPLAY_NAME,
-                                fileName
+                                safeFileName
                         );
 
                         values.put(
@@ -97,16 +106,22 @@ public class MainActivity extends BridgeActivity {
                         );
 
                         if (imageUri == null) {
-                            sendResult(false, "Tidak dapat membuat file gambar");
+                            sendResult(
+                                    false,
+                                    "Tidak dapat membuat file gambar"
+                            );
                             return;
                         }
 
                         try {
+
                             outputStream = getContentResolver()
                                     .openOutputStream(imageUri);
 
                             if (outputStream == null) {
-                                throw new Exception("Output stream tidak tersedia");
+                                throw new Exception(
+                                        "Output stream tidak tersedia"
+                                );
                             }
 
                             byte[] buffer = new byte[8192];
@@ -119,6 +134,7 @@ public class MainActivity extends BridgeActivity {
                             outputStream.flush();
 
                             ContentValues completed = new ContentValues();
+
                             completed.put(
                                     MediaStore.Images.Media.IS_PENDING,
                                     0
@@ -144,7 +160,10 @@ public class MainActivity extends BridgeActivity {
                                     null
                             );
 
-                            sendResult(false, "Gagal menyimpan gambar");
+                            sendResult(
+                                    false,
+                                    "Gagal menyimpan gambar"
+                            );
 
                         } finally {
 
@@ -188,7 +207,10 @@ public class MainActivity extends BridgeActivity {
             }).start();
         }
 
-        private void sendResult(boolean success, String message) {
+        private void sendResult(
+                boolean success,
+                String message
+        ) {
 
             runOnUiThread(() -> {
 
