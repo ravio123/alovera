@@ -1,383 +1,2417 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alovera  — Chat & Image Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="styyle.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alovera</title>
   
+<script async src="https://cse.google.com/cse.js?cx=b5e95dd2e19e945a9">
+</script>
+
+
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="logo-180.png">
+  <meta name="theme-color" content="#2d9cdb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Alovera">
+  
+  
+  
+<!-- Open Graph untuk Facebook, WhatsApp, LinkedIn, dll -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Platform Kreativitas & Produktivitas ">
+
+<meta property="og:description" content="Kunjungi sekarang dan temukan keajaiban bersama kami">
+
+<meta property="og:url" content="https://www.alovera.id">
+
+<meta property="og:image" content="https://alovera.id/hut811/300.png">
+  
+  
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6546396960605792" crossorigin="anonymous"></script>
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  
+  
+
+  
+  
+  <link rel="stylesheet" href="theme.css">
+  
+  <!--
+  <link rel="stylesheet" href="theme.css">
+  -->
+  
+  
+  <link rel="stylesheet" href="styx240726.css">
+  
+  
+ 
+
+ 
+  <link rel="stylesheet" href="ai.css">
+
+
+  <link rel="stylesheet" href="chat.css">
+
+  <link rel="stylesheet" href="videav.css">
+
+  <link rel="stylesheet" href="post.css">
+
+
+  <link rel="stylesheet" href="notif.css">
+
+  <!-- Chart.js untuk grafik -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
 </head>
 <body>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-logo">
-                <div class="infinity-logo">
-                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#6366f1"/>
-                                <stop offset="50%" style="stop-color:#a855f7"/>
-                                <stop offset="100%" style="stop-color:#6366f1"/>
-                            </linearGradient>
-                        </defs>
-                        <path class="infinity-path-bg" d="M15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 Q15,45 15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 L30,30" />
-                        <path class="infinity-path" d="M15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 Q15,45 15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 L30,30" />
-                    </svg>
-                </div>
-                <span data-i18n="appName">Alovera AI</span>
-            </div>
-            <button class="toggle-sidebar-btn" id="closeSidebarBtn"><i class="fa-solid fa-chevron-left"></i></button>
-        </div>
-        <button class="new-chat-btn" id="newChatSidebarBtn"><i class="fa-solid fa-pen-to-square"></i> <span data-i18n="newChatSidebar">Percakapan Baru</span></button>
-        <div class="sidebar-chats" id="sidebarChatsList"></div>
-        <div class="sidebar-footer">
-            <button class="theme-toggle" id="themeToggleBtn"><i class="fa-solid fa-sun" id="themeIcon"></i> <span data-i18n="themeLabel" id="themeLabel">Mode Terang</span></button>
-            <button id="settingsBtn"><i class="fa-solid fa-gear"></i> <span data-i18n="settings">Pengaturan</span></button>
-            <button class="danger" id="clearAllChatsBtn"><i class="fa-solid fa-trash-can"></i> <span data-i18n="clearAll">Hapus Semua Chat</span></button>
-        </div>
-    </aside>
+  <!-- OVERLAY -->
+  <div id="menuOverlay" onclick="closeMenu()"></div>
+
+  <!-- SIDE MENU -->
+  <div id="sideMenu">
+    <div class="menu-header">
+      <div class="logo-menu">
+        <img src="logog.png" alt="Logo" width="40" height="40" onerror="this.src='https://via.placeholder.com/40x40/1a6b3c/fff?text=A'" />
+        <h3>alovera</h3>
+        
+             <span class="brand-domain">Community</span>
+             
+             
+     
+     
+      </div>
+      <button class="close-btn" onclick="closeMenu()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="menu-item" onclick="navigateTo('home')"><i class="fas fa-home"></i><span>Beranda</span></div>
+
+<div class="menu-item" onclick="navigateTo('profile')"><i class="fas fa-user"></i><span>Profil</span></div>
+
+<div class="menu-item" onclick="navigateTo('feed')"><i class="fas fa-play-circle"></i><span>Play Video</span></div>
     
-    <div class="main-content" id="mainContent">
-        <div class="top-bar">
-            <button class="toggle-sidebar-btn" id="openSidebarBtn"><i class="fa-solid fa-bars"></i></button>
-            <span class="top-bar-title" id="currentChatTitle">Percakapan Baru</span>
-            <button class="header-btn" id="newChatTopBtn"><i class="fa-solid fa-pen-to-square"></i> <span></span></button>
+    
+    
+    
+    
+    <div class="menu-item" onclick="navigateTo('news')"><i class="fas fa-newspaper"></i><span>Berita</span></div>
+    <div class="menu-item" onclick="navigateTo('stock')"><i class="fas fa-search"></i><span>Stock</span></div>
+    <div class="menu-item" onclick="navigateTo('books')"><i class="fas fa-book"></i><span>Perpustakaan</span></div>
+    
+    <!--
+    <div class="menu-item" onclick="navigateTo('cart')"><i class="fas fa-shopping-cart"></i><span>Keranjang</span></div>
+    
+<div class="menu-item" onclick="navigateTo('shop')"><i class="fas fa-store"></i><span>Store</span></div>
+    
+    
+    
+    
+    <div class="menu-item" onclick="window.location.href='event/index.html'"><i class="fas fa-box"></i><span>Event Spesial</span></div>
+    -->
+    
+    
+    <div class="menu-item" onclick="window.location.href='privvcy.html'"><i class="fas fa-shield"></i><span>Kebijakan Privasi</span></div>
+    <div class="menu-item" onclick="window.location.href='hellpp.html'"><i class="fas fa-question-circle"></i><span>Bantuan</span></div>
+    
+   
+    <div class="menu-item" onclick="window.location.href='tentngu67.html'"><i class="fas fa-info-circle"></i><span>Tentang</span></div>
+    
+    
+    <!-- Theme Toggle -->
+<div class="theme-toggle-wrapper">
+    <div class="theme-toggle-label">
+        <i class="fas fa-palette"></i> Tema
+    </div>
+    <div class="theme-toggle-group">
+        <button class="theme-toggle-btn" data-theme="dark" onclick="setTheme('dark')">
+            <span class="theme-icon"></span>
+            <span>Gelap</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme="light" onclick="setTheme('light')">
+            <span class="theme-icon"></span>
+            <span>Terang</span>
+        </button>
+        <button class="theme-toggle-btn" data-theme="hutri" onclick="setTheme('hutri')">
+            <span class="theme-icon"></span>
+            <span>Spirit</span>
+        </button>
+    </div>
+</div>
+
+
+
+    
+    
+    
+    
+    
+  </div>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-wrapper">
+        <span class="brand-name">alovera</span>
+        <!--
+        <span class="brand-domain">Design</span>
+        -->
+        
+      </div>
+      
+      <!--
+      <div class="header-actions">
+        <button class="btn-editor" onclick="window.location.href='editor/index.html'"><i class="fas fa-pen-fancy"></i> Editor</button>
+        <button onclick="navigateTo('cart')" aria-label="Keranjang">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge-header" id="headerCartBadge" style="display:none;">0</span>
+        </button>
+        <button onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+      -->
+      
+      <div class="header-actions">
+          <!--
+    <button class="btn-premium-plus" onclick="openPremiumModal()" aria-label="Tambah Premium" style="background:none;border:none;color:#6a8a9a;font-size:24px;cursor:pointer;padding:4px 8px;border-radius:50%;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center;width:36px;height:36px;">
+        <i class="fas fa-plus" style="font-size:22px;"></i>
+    </button>
+    
+    -->
+    
+    
+    
+    <!-- TOMBOL AI BARU - dengan animasi gradient text 
+    <button class="btn-ai-chat" id="btnAiChat" onclick="startNewAiChat()" aria-label="Chat AI">
+        <span class="ai-gradient-text">AI</span>
+    </button>
+    -->
+
+
+<!--
+    <button class="btn-ai-chat" id="btnAiChat" onclick="startNewAiChat()" aria-label="Chat AI">
+    <span class="ai-gradient-text">AI</span>
+</button>
+-->
+
+
+    
+    <button class="btn-upload" onclick="openUploadModal()" aria-label="Upload Postingan">
+        <i class="fas fa-plus"></i>
+    </button>
+    
+    
+    
+    
+    
+    <button class="btn-editor" onclick="window.location.href='editor.html'"><i class="fas fa-pen-fancy"></i> Editor</button>
+    
+    <br>
+<!--
+    <button class="btn-notification" onclick="openNotificationModal()" aria-label="Notifikasi" id="notifBtn">
+        <i class="fas fa-heart"></i>
+        <span class="notif-dot" id="notifDot"></span>
+    </button>
+-->
+    
+    
+    
+    
+            <!-- TOMBOL SHOP BARU
+            <button onclick="navigateTo('shop')" aria-label="Toko" style="background:none;border:none;color:#6a8a9a;font-size:18px;cursor:pointer;padding:6px 10px;border-radius:10px;transition:all 0.3s ease;display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-store"></i>
+               
+            </button>
+    -->
+
+            <!-- TOMBOL SHOP BARU DENGAN CLASS UNTUK TEMA 
+            <button class="btn-shop-header" onclick="navigateTo('shop')" aria-label="Toko" id="btnShopHeader">
+                <i class="fas fa-store shop-icon"></i>
+                <span class="shop-label">Store</span>
+            </button>
+            
+            
+        
+    
+    <button onclick="navigateTo('cart')" aria-label="Keranjang">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge-header" id="headerCartBadge" style="display:none;">0</span>
+    </button>
+    -->
+    
+    
+    
+            <!-- TOMBOL SHOP BARU DENGAN CLASS UNTUK TEMA -->
+            <button class="btn-shop-header" onclick="navigateTo('profile')" aria-label="Toko" id="btnShopHeader">
+                <i class="fas fa-circle-user" style="font-size: 22px;"></i>
+                <span class="shop-label">Profile</span>
+            </button>
+    
+    
+    
+    
+    
+    
+    
+    <button onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</div>
+      
+      
+      
+    </div>
+  </header>
+
+  <!-- ============================================================
+  PAGE: HOME (Dengan Produk + Undangan)
+  ============================================================ -->
+
+<!-- ============================================================
+  PAGE: HOME - AI CHAT HUB
+  ============================================================ -->
+<div id="homePage" class="page active">
+    <div class="page-wrapper home-ai-wrapper" id="homeAiWrapper">
+        
+        <br>
+        
+        
+        <!-- ============================================================
+        BERITA SIARAN TERKINI - Di bawah chat
+        ============================================================ -->
+        <div class="siaran-terkini-section" id="siaranSection">
+            <div class="siaran-header">
+                <div class="siaran-title">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Siaran Terkini</span>
+                    <span class="siaran-badge">LIVE</span>
+                </div>
+                <a href="#" onclick="navigateTo('news'); return false;" class="siaran-more">
+                    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                </a>
+            </div>
+            <div class="siaran-slider-wrapper">
+                <div class="siaran-track" id="siaranTrack">
+                    <div class="siaran-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat berita...
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="settings-page" id="settingsPage">
-            <div class="settings-header">
-                <div class="header-left">
-                    <h2><i class="fa-solid fa-gear"></i> <span data-i18n="settingsTitle">Pengaturan</span></h2>
-                    <p data-i18n="settingsSubtitle">Kelola preferensi dan pengaturan aplikasi Anda</p>
+        
+        
+        
+        <!-- ============================================================
+        CHAT CONTAINER - Kolom utama
+        ============================================================ -->
+        <div class="chat-hub-container" id="chatHubContainer">
+            
+            <!-- Welcome Screen -->
+            <div class="chat-welcome-screen" id="aiWelcomeScreen">
+                <!-- Logo Alovera polos (tanpa border/background) -->
+                <div class="ai-logo-pulse">
+                    <img src="logog.png" alt="Alovera" class="ai-logo-img" onerror="this.style.display='none'">
                 </div>
-                <button class="back-btn" id="settingsBackBtn">
-                    <i class="fa-solid fa-arrow-left"></i> <span data-i18n="backToChat">Kembali ke Chat</span>
+                
+                <h2 class="ai-welcome-title" data-i18n="welcomeTitle">Halo, saya Alovera AI</h2>
+                <p class="ai-welcome-subtitle" data-i18n="welcome">Tanya apa saja, minta buatkan gambar, atau cari informasi di Google.</p>
+                
+                
+                
+                
+                <!-- Suggestion chips 
+                <div class="ai-suggestions" id="aiSuggestions">
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Bagaimana cuaca hari ini?')">
+                        <i class="fas fa-cloud-sun"></i> <span data-i18n="suggestion1">Bagaimana cuaca hari ini?</span>
+                    </button>
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Buatkan gambar kucing lucu')">
+                        <i class="fas fa-image"></i> <span data-i18n="suggestion2">Buatkan gambar kucing lucu</span>
+                    </button>
+                    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Cari tentang AI di Google')">
+                        <i class="fab fa-google"></i> <span data-i18n="suggestion3">Cari tentang AI di Google</span>
+                    </button>
+                </div>
+                -->
+<div class="ai-suggestions" id="aiSuggestions">
+    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Mau nanya,')">
+        <i class="fas fa-comment"></i> <span data-i18n="suggestion1">Tanya random</span>
+    </button>
+    <button class="ai-suggestion-chip" onclick="useAiSuggestion('Buatkan gambar kucing lucu')">
+        <i class="fas fa-image"></i> <span data-i18n="suggestion2">Buatkan gambar kucing lucu</span>
+    </button>
+    
+
+    <button class="ai-suggestion-chip" onclick="startRemoveBgFlow()">
+        <i class="fas fa-magic"></i> <span data-i18n="suggestion3">Hapus Background</span>
+    </button>
+    
+</div>
+                
+            </div>
+            
+            <!-- Chat Messages Area -->
+            <div class="chat-messages-area" id="aiChatMessages" style="display:none;">
+                <!-- Pesan akan di-render oleh JS -->
+            </div>
+            
+            <!-- Upload Preview -->
+            <div class="ai-upload-preview" id="aiUploadPreview" style="display:none;">
+                <div class="ai-preview-thumb">
+                    <img id="aiPreviewImage" src="" alt="Preview">
+                    <div class="ai-preview-loading" id="aiPreviewLoading" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+                <div class="ai-preview-info">
+                    <div class="ai-preview-name" id="aiPreviewName">gambar.jpg</div>
+                    <div class="ai-preview-size" id="aiPreviewSize">0 KB</div>
+                </div>
+                <button class="ai-preview-remove" onclick="clearAiUpload()">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             
-            <div class="settings-section">
-                <div class="section-title" data-i18n="displaySection">Tampilan</div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-moon"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="darkModeTitle">Mode Gelap</div>
-                            <div class="card-desc" data-i18n="darkModeDesc">Gunakan tema gelap untuk kenyamanan mata</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <div class="toggle-switch active" id="darkModeToggle">
-                            <div class="toggle-knob"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-font"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="fontSizeTitle">Ukuran Font</div>
-                            <div class="card-desc" data-i18n="fontSizeDesc">Pilih ukuran font yang nyaman</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <select class="settings-select" id="fontSizeSelect">
-                            <option value="small" data-i18n="fontSmall">Kecil</option>
-                            <option value="medium" selected data-i18n="fontMedium">Sedang</option>
-                            <option value="large" data-i18n="fontLarge">Besar</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-section">
-                <div class="section-title" data-i18n="chatSection">Chat & AI</div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-globe"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="languageTitle">Bahasa Aplikasi</div>
-                            <div class="card-desc" data-i18n="languageDesc">Pilih bahasa untuk seluruh aplikasi</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <select class="settings-select" id="languageSelect">
-                            <option value="id">🇮🇩 Indonesia</option>
-                            <option value="ar">🇸🇦 العربية</option>
-                            <option value="eng">🇬🇧 English</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-comment"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="aiModeTitle">Mode Respons AI</div>
-                            <div class="card-desc" data-i18n="aiModeDesc">Kecepatan dan gaya respons AI</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <select class="settings-select" id="aiModeSelect">
-                            <option value="balanced" selected data-i18n="aiBalanced">Seimbang</option>
-                            <option value="creative" data-i18n="aiCreative">Kreatif</option>
-                            <option value="precise" data-i18n="aiPrecise">Presisi</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-image"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="imageQualityTitle">Kualitas Gambar AI</div>
-                            <div class="card-desc" data-i18n="imageQualityDesc">Tingkat kualitas gambar yang dihasilkan</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <select class="settings-select" id="imageQualitySelect">
-                            <option value="standard" data-i18n="imgStandard">Standar</option>
-                            <option value="high" selected data-i18n="imgHigh">Tinggi</option>
-                            <option value="ultra" data-i18n="imgUltra">Ultra HD</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-clock"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="autoSaveTitle">Auto Save Chat</div>
-                            <div class="card-desc" data-i18n="autoSaveDesc">Simpan percakapan secara otomatis</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <div class="toggle-switch active" id="autoSaveToggle">
-                            <div class="toggle-knob"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-section">
-                <div class="section-title" data-i18n="storageSection">Penyimpanan</div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-database"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="chatHistoryTitle">Riwayat Chat</div>
-                            <div class="card-desc" id="chatCountDisplay">0 percakapan tersimpan</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <button class="settings-btn" id="clearHistoryBtn" style="padding:6px 16px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--bg-hover);color:var(--text-secondary);cursor:pointer;font-family:inherit;font-size:0.8rem;transition:var(--transition);"><span data-i18n="clearHistory">Hapus Semua</span></button>
-                    </div>
-                </div>
-                <div class="settings-card">
-                    <div class="card-left">
-                        <i class="fa-solid fa-file-export"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="exportTitle">Ekspor Data</div>
-                            <div class="card-desc" data-i18n="exportDesc">Ekspor semua percakapan ke file</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <button class="settings-btn" id="exportDataBtn" style="padding:6px 16px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--bg-hover);color:var(--text-secondary);cursor:pointer;font-family:inherit;font-size:0.8rem;transition:var(--transition);"><span data-i18n="exportBtn">Ekspor</span></button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-section">
-                <div class="section-title" data-i18n="legalSection">Legal & Bantuan</div>
-                <div class="settings-card clickable" id="privacyPolicyBtn">
-                    <div class="card-left">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="privacyTitle">Kebijakan Privasi</div>
-                            <div class="card-desc" data-i18n="privacyDesc">Pelajari bagaimana kami melindungi data Anda</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);"></i>
-                    </div>
-                </div>
-                <div class="settings-card clickable" id="helpBtn">
-                    <div class="card-left">
-                        <i class="fa-solid fa-circle-question"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="helpTitle">Pusat Bantuan</div>
-                            <div class="card-desc" data-i18n="helpDesc">Panduan dan FAQ penggunaan aplikasi</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);"></i>
-                    </div>
-                </div>
-                <div class="settings-card clickable" id="aboutBtn">
-                    <div class="card-left">
-                        <i class="fa-solid fa-info-circle"></i>
-                        <div class="card-info">
-                            <div class="card-title" data-i18n="aboutTitle">Tentang Aplikasi</div>
-                            <div class="card-desc" data-i18n="aboutDesc">Versi, pengembang, dan lisensi</div>
-                        </div>
-                    </div>
-                    <div class="card-right">
-                        <i class="fa-solid fa-chevron-right" style="color:var(--text-muted);"></i>
-                    </div>
-                </div>
-                <div class="settings-card" style="cursor:default;">
-                    <div class="card-left">
-                        <i class="fa-solid fa-infinity"></i>
-                        <div class="card-info">
-                            <div class="card-title">Alovera AI v2.0</div>
-                            <div class="card-desc">Chat AI dengan fitur gambar & pencarian Google</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Context Menu untuk Sidebar -->
-        <div class="context-menu" id="contextMenu">
-            <button class="menu-item" data-action="rename"><i class="fa-solid fa-pen"></i> <span data-i18n="ctxRename">Ubah Nama</span></button>
-            <button class="menu-item" data-action="pin"><i class="fa-solid fa-thumbtack"></i> <span data-i18n="ctxPin">Sematkan</span></button>
-            <div class="menu-divider"></div>
-            <button class="menu-item danger" data-action="delete"><i class="fa-solid fa-trash"></i> <span data-i18n="ctxDelete">Hapus</span></button>
-        </div>
-        
-        <!-- Context Menu untuk Pesan -->
-        <div class="msg-context-menu" id="msgContextMenu">
-            <button class="menu-item" id="msgCopyBtn"><i class="fa-solid fa-copy"></i> <span data-i18n="msgCopy">Salin</span></button>
-            <button class="menu-item" id="msgSelectBtn"><i class="fa-solid fa-highlighter"></i> <span data-i18n="msgSelect">Pilih Teks</span></button>
-            <div class="menu-divider" id="msgEditDivider"></div>
-            <button class="menu-item" id="msgEditBtn"><i class="fa-solid fa-pen"></i> <span data-i18n="msgEdit">Edit Teks</span></button>
-        </div>
-        
-        <div class="chat-area" id="chatArea">
-            <div class="chat-welcome" id="welcomeScreen">
-                <div class="infinity-logo2">
-                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="infinityGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#6366f1"/>
-                                <stop offset="50%" style="stop-color:#a855f7"/>
-                                <stop offset="100%" style="stop-color:#6366f1"/>
-                            </linearGradient>
-                        </defs>
-                        <path class="infinity-path-bg" d="M15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 Q15,45 15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 L30,30" />
-                        <path class="infinity-path" d="M15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 Q15,45 15,30 Q15,15 30,15 Q45,15 45,30 Q45,45 30,45 L30,30" />
-                    </svg>
-                </div>
-                <h2>Alovera AI</h2>
-                <p data-i18n="welcome" id="welcomeText">Tanya apa saja, minta buatkan gambar, atau cari informasi di Google.</p>
-                <div class="suggestions" id="suggestionsList">
-                    <button class="suggestion-chip" data-i18n="suggestion1" id="suggestion1">Bagaimana cuaca hari ini?</button>
-                    <button class="suggestion-chip" data-i18n="suggestion2" id="suggestion2">Buatkan gambar kucing lucu</button>
-                    <button class="suggestion-chip" data-i18n="suggestion3" id="suggestion3">Cari tentang AI di Google</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="upload-preview" id="uploadPreview">
-            <div class="preview-thumbnail">
-                <img id="uploadPreviewImage" src="" alt="Preview">
-                <div class="loading-overlay" id="uploadLoadingOverlay">
-                    <div class="mini-spinner"></div>
-                </div>
-            </div>
-            <div class="preview-info">
-                <div class="file-name" id="uploadFileName">gambar.png</div>
-                <div class="file-size" id="uploadFileSize">0 KB</div>
-            </div>
-            <div class="preview-actions">
-                <button class="primary" id="previewRemoveBg"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="previewRemoveBg" id="previewRemoveBgText">Hapus BG</span></button>
-                <button id="previewEnhance"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="previewEnhance" id="previewEnhanceText">Perjelas</span></button>
-            </div>
-            <button class="remove-upload" id="removeUploadBtn"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        
-        <div class="input-area" id="inputArea">
-            <div class="input-wrapper">
-                <div class="input-tools-menu">
-                    <button class="input-tools-btn" id="toolsToggleBtn"><i class="fa-solid fa-plus"></i></button>
-                    <div class="tools-dropdown" id="toolsDropdown">
-                        <button class="tool-item" id="uploadImageBtn">
-                            <i class="fa-solid fa-image"></i>
-                            <div class="tool-content">
-                                <span data-i18n="toolUploadText" id="toolUploadText">Tambahkan Gambar</span>
-                                <span class="tool-desc" data-i18n="toolUploadDesc" id="toolUploadDesc">Upload gambar untuk diedit</span>
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="chat-input-wrapper">
+                    <button class="ai-tools-btn" id="aiToolsBtn" onclick="toggleAiTools(event)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    
+                    <!-- Tools Dropdown -->
+                    <div class="ai-tools-dropdown" id="aiToolsDropdown">
+                        <button class="ai-tool-item" onclick="triggerAiUpload()">
+                            <i class="fas fa-image"></i>
+                            <div>
+                                <div data-i18n="toolUploadText">Tambahkan Gambar</div>
+                                <small data-i18n="toolUploadDesc">Upload gambar untuk diedit</small>
                             </div>
                         </button>
-                        <button class="tool-item" id="removeBgBtn">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            <div class="tool-content">
-                                <span data-i18n="toolRemoveBgText" id="toolRemoveBgText">Hapus Background</span>
-                                <span class="tool-desc" data-i18n="toolRemoveBgDesc" id="toolRemoveBgDesc">Hilangkan latar belakang</span>
+                        <button class="ai-tool-item" onclick="triggerAiRemoveBg()">
+                            <i class="fas fa-magic"></i>
+                            <div>
+                                <div data-i18n="toolRemoveBgText">Hapus Background</div>
+                                <small data-i18n="toolRemoveBgDesc">Hilangkan latar belakang</small>
                             </div>
                         </button>
-                        <button class="tool-item" id="enhanceImageBtn">
-                            <i class="fa-solid fa-wand-magic-sparkles enhance-icon"></i>
-                            <div class="tool-content">
-                                <span data-i18n="toolEnhanceText" id="toolEnhanceText">Perjelas Gambar</span>
-                                <span class="tool-desc" data-i18n="toolEnhanceDesc" id="toolEnhanceDesc">Tingkatkan kualitas gambar buram</span>
+                        <button class="ai-tool-item" onclick="triggerAiEnhance()">
+                            <i class="fas fa-wand-magic-sparkles"></i>
+                            <div>
+                                <div data-i18n="toolEnhanceText">Perjelas Gambar</div>
+                                <small data-i18n="toolEnhanceDesc">Tingkatkan kualitas gambar</small>
                             </div>
                         </button>
-                        <button class="tool-item" id="googleSearchBtn">
-                            <i class="fa-brands fa-google google-icon"></i>
-                            <div class="tool-content">
-                                <span data-i18n="toolGoogleText" id="toolGoogleText">Cari di Google</span>
-                                <span class="tool-desc" data-i18n="toolGoogleDesc" id="toolGoogleDesc">Cari informasi tetap di chat</span>
+                        <button class="ai-tool-item" onclick="triggerAiGoogleSearch()">
+                            <i class="fab fa-google" style="color:#ea4335;"></i>
+                            <div>
+                                <div data-i18n="toolGoogleText">Cari di Google</div>
+                                <small data-i18n="toolGoogleDesc">Cari informasi tetap di chat</small>
                             </div>
                         </button>
                     </div>
+                    
+                    <textarea 
+                        id="aiChatInput" 
+                        class="ai-chat-input" 
+                        rows="1"
+                        placeholder="Tanyakan sesuatu.."
+                        data-i18n-placeholder="input_placeholder"
+                    ></textarea>
+                    
+                    <button class="ai-send-btn" id="aiSendBtn" onclick="handleAiSend()">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
                 </div>
-                <textarea id="userInput" rows="1" placeholder="Ketik pesan, buat gambar, cari..." data-i18n-placeholder="inputPlaceholder"></textarea>
-                <button class="send-btn" id="sendBtn"><i class="fa-solid fa-arrow-up"></i></button>
             </div>
+        </div>
+        
+        
+        
+        <!-- ============================================================
+        BERITA SIARAN TERKINI - Di bawah chat
+        ============================================================ 
+        <div class="siaran-terkini-section" id="siaranSection">
+            <div class="siaran-header">
+                <div class="siaran-title">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Siaran Terkini</span>
+                    <span class="siaran-badge">LIVE</span>
+                </div>
+                <a href="#" onclick="navigateTo('news'); return false;" class="siaran-more">
+                    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+                </a>
+            </div>
+            <div class="siaran-slider-wrapper">
+                <div class="siaran-track" id="siaranTrack">
+                    <div class="siaran-loading">
+                        <i class="fas fa-spinner fa-spin"></i> Memuat berita...
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+        
+        
+    </div>
+</div>
+
+  
+  <!-- ============================================================
+PAGE: SHOP / PRODUK (BARU)
+============================================================ -->
+<div id="shopPage" class="page">
+  <div class="page-wrapper">
+      <br>
+      
+      <!-- Header -->
+      <div class="shop-header">
+          <div class="shop-title">
+              <i class="fas fa-store"></i> 
+              <span>Alovera Store</span>
+          </div>
+          <!--
+          <div class="shop-subtitle">Temukan layanan desain premium dan undangan digital terbaik</div>
+          
+         
+          -->
+          
+
+        
+        
+      </div>
+
+      <!-- Search & Categories -->
+      <div class="shop-sticky-search">
+          <div class="shop-search-box">
+              <i class="fas fa-search shop-search-icon"></i>
+              <input type="text" id="shopSearchInput" placeholder="Cari produk desain..." oninput="searchShopProduct(this.value)">
+          </div>
+          <div class="shop-categories">
+              <button class="active" onclick="filterShopCategory('all', this)">Semua</button>
+              <button onclick="filterShopCategory('desain', this)">Desain</button>
+              <button onclick="filterShopCategory('kemasan', this)">Kemasan</button>
+              <button onclick="filterShopCategory('poster', this)">Poster</button>
+          </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="shop-products" id="shopProductList"></div>
+
+      <!-- Invitation Section -->
+      <div style="padding-top:16px;">
+          <div class="shop-invitation-banner">
+              <h2> Undangan Digital Website</h2>
+              <p>Desain undangan website modern dengan tema elegan dan mewah. Tersedia berbagai pilihan tema untuk acara spesial Anda.</p>
+              <a href="und26.html" class="btn-order-shop"><i class="fas fa-calendar-plus"></i> Lihat Promo Spesial</a>
+          </div>
+          <div class="shop-invitation-grid" id="shopInvitationGrid">
+              <div class="shop-invitation-card">
+                  <img src="imagges/goldn.png" alt="Gold" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Gold'">
+                  <div class="content">
+                      <h3>GOLD</h3>
+                      <p>Tema Kelas Atas • Mewah</p>
+                      <span class="price-tag-shop">Rp 210.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('GOLD')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/grren.png" alt="Green" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Green'">
+                  <div class="content">
+                      <h3>GREEN</h3>
+                      <p>Tema Keindahan Estetika</p>
+                      <span class="price-tag-shop">Rp 186.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('GREEN')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/skkura.png" alt="Sakura" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Sakura'">
+                  <div class="content">
+                      <h3>SAKURA</h3>
+                      <p>Tema Hujan Sakura</p>
+                      <span class="price-tag-shop">Rp 198.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('SAKURA')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/pllati.png" alt="Platinum" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Platinum'">
+                  <div class="content">
+                      <h3>PLATINUM</h3>
+                      <p>Modern • Simple</p>
+                      <span class="price-tag-shop">Rp 167.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('PLATINUM')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/luuxur.png" alt="Luxury" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Luxury'">
+                  <div class="content">
+                      <h3>LUXURY</h3>
+                      <p>Mewah • Elegan</p>
+                      <span class="price-tag-shop">Rp 320.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('LUXURY')">Pilih Paket</button>
+                  </div>
+              </div>
+              <div class="shop-invitation-card">
+                  <img src="imagges/wllker.png" alt="Walker" onerror="this.src='https://via.placeholder.com/400x130/1a6b3c/fff?text=Walker'">
+                  <div class="content">
+                      <h3>WALKER</h3>
+                      <p>Petualangan • Unik</p>
+                      <span class="price-tag-shop">Rp 195.000</span><br>
+                      <button class="btn-invite-shop" onclick="openPopup('WALKER')">Pilih Paket</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <br><br><br>
+  </div>
+</div>
+  
+  
+  
+  
+
+  <!-- ============================================================
+  PAGE: NEWS
+  ============================================================ -->
+  <div id="newsPage" class="page">
+      
+      
+      
+
+          <!-- ============================================================
+  GOOGLE SEARCH BAR - Di Halaman News (seperti Google News)
+  ============================================================ -->
+<div class="news-google-search-wrapper" id="newsGoogleSearchWrapper">
+    <div class="news-google-search-input-wrap">
+        <!-- Logo G Google -->
+        <svg class="news-google-g-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        
+        <!-- Input Search -->
+        <input 
+            type="text" 
+            id="newsGoogleSearchInput" 
+            class="news-google-search-input"
+            placeholder="Pencarian Google"
+            autocomplete="off"
+        >
+        
+        <!-- Icon kamera & mic (dekoratif) -->
+        <button class="news-google-icon-btn" title="Pencarian gambar" onclick="showNotification('Fitur segera hadir', 'info')">
+            <i class="fas fa-camera"></i>
+        </button>
+        <button class="news-google-icon-btn" title="Pencarian suara" onclick="showNotification('Fitur segera hadir', 'info')">
+            <i class="fas fa-microphone"></i>
+        </button>
+        
+        <!-- Tombol Clear (muncul saat ada teks) -->
+        <button class="news-google-search-clear" id="newsGoogleSearchClear" onclick="clearNewsGoogleSearch()" style="display:none;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+      
+      
+
+      
+      
+      
+      
+      
+    <div class="page-wrapper">
+      
+
+<!-- ============================================================
+  NEWS GOOGLE SEARCH MODAL - Popup hasil pencarian
+  ============================================================ -->
+<div class="news-cse-modal" id="newsCseModal" onclick="closeNewsCseOutside(event)">
+    <div class="news-cse-modal-content">
+        <!-- Header Modal -->
+        <div class="news-cse-modal-header">
+            <button class="news-cse-modal-back" onclick="closeNewsCseModal()" aria-label="Tutup">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="news-cse-modal-query" id="newsCseQuery">Hasil pencarian</div>
+            <button class="news-cse-modal-close" onclick="closeNewsCseModal()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Body CSE -->
+        <div class="news-cse-modal-body" id="newsCseModalBody">
+            <div class="gcse-search" data-queryParameterName="q"></div>
         </div>
     </div>
-    
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="Preview">
-            <div class="lightbox-loading" id="lightboxLoading">
-                <div class="spinner-ring">
-                    <svg viewBox="0 0 60 60">
-                        <circle class="ring-bg" cx="30" cy="30" r="25"/>
-                        <circle class="ring" cx="30" cy="30" r="25"/>
-                    </svg>
-                </div>
-                <div class="loading-label" data-i18n="lightboxLoading" id="lightboxLoadingText">Memproses gambar...</div>
-            </div>
-            <button class="lightbox-close" id="lightboxClose"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+
+
+<!-- ============================================================
+  BERITA SPESIAL MAULID NABI
+  ============================================================
+<div class="maulid-news-section">
+    <div class="maulid-header">
+        <div class="maulid-title">
+            
+            <!--
+            <span class="maulid-icon"><i class="fas fa-star-and-crescent"></i></span>
+            
+            
+            <i class="fas fa-bank"></i>
+            <h5>
+            <span>Edukasi dan Finansial</span>
+            </h5>
+            <span class="maulid-badge">Grow Insight</span>
         </div>
-        <div class="lightbox-actions">
-            <button class="image-action-btn download" id="lightboxDownload"><i class="fa-solid fa-download"></i> <span data-i18n="lightboxDownload" id="lightboxDownloadText">Unduh</span></button>
-            <button class="image-action-btn remove-bg" id="lightboxRemoveBg"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="lightboxRemoveBg" id="lightboxRemoveBgText">Hapus BG</span></button>
-            <button class="image-action-btn enhance" id="lightboxEnhance"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="lightboxEnhance" id="lightboxEnhanceText">Perjelas</span></button>
-        </div>
+        <!--
+        <a href="maulid.html" class="maulid-more">
+            Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+        </a>
+        
+        
+        <a href="#" onclick="navigateTo('maulid'); return false;" class="maulid-more">
+    Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+</a>
+
+
     </div>
-    
-    <div class="toast-container" id="toastContainer"></div>
-    
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3 id="modalTitle">Judul</h3>
-                <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="modal-body" id="modalBody"></div>
-            <div class="modal-footer">
-                <button class="modal-btn primary" id="modalCloseBtn"><span data-i18n="modalClose">Tutup</span></button>
-            </div>
+
+    <!-- Maulid Slider 
+    <div class="maulid-slider-wrapper">
+        <div class="maulid-slider-track" id="maulidSliderTrack">
+            <!-- Slide akan di-render oleh JavaScript 
         </div>
     </div>
 
-    <div class="gcse-wrapper" style="display:none;">
-        <div class="gcse-search"></div>
+    <!-- Controls
+    <div class="maulid-slider-controls">
+        <button class="maulid-nav-btn" id="maulidPrevBtn" onclick="prevMaulidSlide()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="maulid-dots" id="maulidDots">
+            <!-- Dots akan di-render oleh JavaScript 
+        </div>
+        <button class="maulid-nav-btn" id="maulidNextBtn" onclick="nextMaulidSlide()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 
+    <!-- Update Info
+    <div class="maulid-update-notif">
+        <i class="fas fa-sync-alt fa-fw"></i>
+        Berita diperbarui secara otomatis · 
+        <span class="update-time" id="maulidUpdateTime"></span>
+    </div>
     
-  <script src="sccipt.obfus.js"></script>
+</div>
+      
+-->      
+<!-- ============================================================
+  BERITA CERDAS FINANSIAL
+  ============================================================ -->
+<div class="maulid-news-section fin-news-section">
+    <div class="maulid-header">
+        <div class="maulid-title">
+            <span class="maulid-icon fin-icon"><i class="fas fa-coins"></i></span>
+            <h5>
+            <span>Cerdas Finansial</span>
+            </h5>
+            <span class="maulid-badge fin-badge">Grow Insight</span>
+        </div>
+        
+        <a href="#" onclick="navigateTo('maulid'); return false;" class="maulid-more">
+            Lihat Semua <i class="fas fa-chevron-right" style="font-size:10px;"></i>
+        </a>
+    </div>
+
+    <!-- Cerdas Finansial Slider -->
+    <div class="maulid-slider-wrapper">
+        <div class="maulid-slider-track" id="maulidSliderTrack">
+            <!-- Slide akan di-render oleh JavaScript -->
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="maulid-slider-controls">
+        <button class="maulid-nav-btn" id="maulidPrevBtn" onclick="prevMaulidSlideNews()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="maulid-dots" id="maulidDots">
+            <!-- Dots akan di-render oleh JavaScript -->
+        </div>
+        <button class="maulid-nav-btn" id="maulidNextBtn" onclick="nextMaulidSlideNews()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+      
+      
+      
+      
+      
+        
+      <div class="sticky-search">
+          
+          
+
+<!-- ============================================================
+  HASIL PENCARIAN GOOGLE CSE - Muncul saat search aktif
+  ============================================================
+<div class="news-cse-container" id="newsCseContainer" style="display:none;">
+    <div class="news-cse-header">
+        <button class="news-cse-back" onclick="clearNewsGoogleSearch()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="news-cse-query" id="newsCseQuery">Hasil pencarian</div>
+    </div>
+    <div class="news-cse-body">
+        <div class="gcse-search" data-queryParameterName="q"></div>
+    </div>
+</div>
+          -->
+          
+          
+          
+          
+          
+        <div class="news-categories" id="newsCategories">
+            
+            
+            
+            
+            
+          <button class="active" onclick="loadNews('', this)">Semua</button>
+          
+          
+          
+          
+    <!-- TAMBAHKAN KATEGORI BARU DI BAWAH INI 
+    <button onclick="loadNews('independence81', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2); color: #ff6b6b;">
+        🇮🇩 HUT RI ke-81
+    </button>
+    
+    -->
+    
+<button onclick="loadNews('business', this)">Bisnis</button>
+          
+          <button onclick="loadNews('technology', this)">Teknologi</button>
+          <button onclick="loadNews('islam', this)">Islam</button>
+          <button onclick="loadNews('sports', this)">Olahraga</button>
+          <button onclick="loadNews('entertainment', this)">Hiburan</button>
+          
+
+          <button onclick="loadNews('politics', this)">Politik</button>
+          
+          <button onclick="loadNews('music', this)">Lagu</button>
+          <button onclick="loadNews('nature', this)">Alam</button>
+          <button onclick="loadNews('space', this)">Astronomi</button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+<div class="section-title"><i class="fas fa-newspaper"></i><span>Berita Terkini</span></div>
+      
+      
+      <div class="news-grid" id="newsList"><div class="news-loading"><i class="fas fa-spinner fa-spin"></i> Memuat berita...</div></div>
+      
+      
+      
+  
+  <!-- Tambahkan setelah news-grid di halaman News -->
+<div class="load-more-wrap" id="newsLoadMoreWrap" style="display:none;">
+    <button class="btn-load-more" onclick="loadMoreIndependenceNews()">
+        <i class="fas fa-chevron-down"></i> Muat Lebih Banyak Berita HUT RI
+    </button>
+</div>
+
+      
+      
+      
+      
+      
+      
+      <br><br><br>
+    </div>
+  </div>
+  
+  
+  
+
+
+  <!-- ============================================================
+  PAGE: STOCK
+  ============================================================ -->
+  <div id="stockPage" class="page">
+    <div class="page-wrapper">
+        <br>
+        
+        <!--
+      <div class="section-title"><i class="fas fa-images"></i><span>Stock Gallery</span></div>
+-->
+
+      <div class="stock-search-wrap">
+        <div class="search-input-group">
+          <i class="fas fa-search search-icon-small"></i>
+          <input type="text" id="stockSearchInput" placeholder="Cari foto atau video..." />
+        </div>
+        <div class="btn-group">
+          <button class="btn-search" onclick="searchStock()"> Cari</button>
+          
+          
+          
+          <button class="btn-refresh" onclick="loadRandomStock()"><i class="fas fa-sync-alt"></i></button>
+          
+          
+   
+          
+        </div>
+      </div>
+
+
+
+
+
+
+     
+      <!-- ============================================================
+  MAULID STOCK SLIDER - SPESIAL MAULID NABI
+  ============================================================
+<div class="maulid-stock-section">
+    <div class="maulid-stock-header">
+        <div class="maulid-stock-title">
+            
+            <!--
+            <span class="maulid-stock-icon"><i class="fas fa-star-and-crescent"></i></span>
+           
+            
+            <i class="fas fa-images"></i>
+            
+            <span>Karya Komunitas</span>
+            <span class="maulid-stock-badge">Grow Creative</span>
+        </div>
+        <div class="maulid-stock-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+            
+            <button class="maulid-stock-refresh" id="maulidStockRefresh" onclick="refreshMaulidStock()" title="Refresh">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            
+        </div>
+    </div>
+    
+    <div class="maulid-stock-slider-wrapper" id="maulidStockWrapper">
+        <div class="maulid-stock-track" id="maulidStockTrack">
+            <div class="maulid-stock-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat galeri Maulid...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-dots" id="maulidStockDots">
+      
+    </div>
+</div>
+-->
+<!-- ============================================================
+  KARYA KOMUNITAS - GROW CREATIVE
+  ============================================================ -->
+<div class="maulid-stock-section fin-stock-section">
+    <div class="maulid-stock-header">
+        <div class="maulid-stock-title">
+            <span class="maulid-stock-icon fin-stock-icon"><i class="fas fa-images"></i></span>
+            <span>Karya Komunitas</span>
+            <span class="maulid-stock-badge fin-stock-badge">Grow Creative</span>
+        </div>
+        <div class="maulid-stock-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-slider-wrapper" id="maulidStockWrapper">
+        <div class="maulid-stock-track" id="maulidStockTrack">
+            <div class="maulid-stock-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat galeri kreatif...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-stock-dots" id="maulidStockDots">
+        <!-- Dots akan di-render oleh JavaScript -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+      <div class="stock-categories" id="stockCategories">
+        <button class="active" onclick="filterStockCategory('random', this)">Semua</button>
+        
+        
+          <!-- TAMBAHKAN KATEGORI BARU DI BAWAH INI 
+    <button onclick="filterStockCategory('independence', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2);">
+      🇮🇩 HUT RI ke-81
+    </button>
+        -->
+        
+        
+        
+        <button onclick="filterStockCategory('nature', this)">Estetika</button>
+        <button onclick="filterStockCategory('people', this)">Orang</button>
+        <button onclick="filterStockCategory('technology', this)">Teknologi</button>
+        <button onclick="filterStockCategory('animals', this)">Hewan</button>
+        <button onclick="filterStockCategory('food', this)">Makanan</button>
+        <button onclick="filterStockCategory('travel', this)">Travel</button>
+        <button onclick="filterStockCategory('architecture', this)">Arsitektur</button>
+        <button onclick="filterStockCategory('business', this)">Bisnis</button>
+        <button onclick="filterStockCategory('fashion', this)">Fashion</button>
+        <button onclick="filterStockCategory('sports', this)">Olahraga</button>
+        <button onclick="filterStockCategory('music', this)">Musik</button>
+        <button onclick="filterStockCategory('art', this)">Seni</button>
+        <button onclick="filterStockCategory('space', this)">Semesta</button>
+        <button onclick="filterStockCategory('design', this)">Desain Modern</button>
+      </div>
+      
+      
+      
+      
+      
+      
+ 
+      
+      
+      
+      
+
+      <div class="stock-grid" id="stockList">
+        <div class="stock-loading"><i class="fas fa-spinner fa-spin"></i> Memuat gallery...</div>
+      </div>
+
+      <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+        <button class="btn-load-more" onclick="loadMoreStock()"><i class="fas fa-chevron-down"></i> Muat Lebih Banyak</button>
+      </div>
+
+      <br><br><br>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  PAGE: BUKU / PERPUSTAKAAN
+  ============================================================ -->
+  <div id="booksPage" class="page">
+    <div class="page-wrapper">
+        
+        
+        <br>
+        <!--
+      <div class="section-title"><i class="fas fa-book-open"></i><span>Perpustakaan Buku</span></div>
+-->
+
+      <div class="book-search-wrap">
+        <div class="search-input-group">
+          <i class="fas fa-search search-icon-small"></i>
+          <input type="text" id="bookSearchInput" placeholder="Cari judul atau penulis..." />
+        </div>
+        <div class="btn-group">
+          <button class="btn-search" onclick="searchBooks()"> Cari</button>
+          <button class="btn-refresh" onclick="loadRandomBooks()"><i class="fas fa-sync-alt"></i></button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+  
+      
+      <!-- ============================================================
+  MAULID BOOKS SLIDER - SPESIAL MAULID NABI
+  ============================================================ 
+<div class="maulid-books-section">
+    <div class="maulid-books-header">
+        <div class="maulid-books-title">
+            
+            <!--
+            <span class="maulid-books-icon"><i class="fas fa-star-and-crescent"></i></span>
+            
+            
+            <i class="fas fa-book-open"></i>
+            
+            <span>Perpustakaan Buku</span>
+            <span class="maulid-books-badge">Grow Mindset</span>
+        </div>
+        <div class="maulid-books-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+            
+            
+            <!--
+            <button class="maulid-books-refresh" id="maulidBooksRefresh" onclick="refreshMaulidBooks()" title="Refresh">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+           
+            
+            
+        </div>
+    </div>
+    
+    <div class="maulid-books-slider-wrapper" id="maulidBooksWrapper">
+        <div class="maulid-books-track" id="maulidBooksTrack">
+            <div class="maulid-books-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat buku Maulid...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-books-dots" id="maulidBooksDots">
+        <!-- Dots akan di-render oleh JavaScript 
+    </div>
+</div>
+      
+  -->
+  <!-- ============================================================
+  PUSTAKA WAWASAN - BUKU EDUKASI & GROW MINDSET
+  ============================================================ -->
+<div class="maulid-books-section fin-books-section">
+    <div class="maulid-books-header">
+        
+        <div class="maulid-books-title">
+            <span class="maulid-books-icon fin-books-icon"><i class="fas fa-book-open"></i></span>
+            <span>Terus Berkembang</span>
+            <span class="maulid-books-badge fin-books-badge">Grow Mindset</span>
+        </div>
+        
+        <div class="maulid-books-actions">
+            <span style="font-size:11px;color:var(--text-muted);">
+                <i class="fas fa-arrows-left-right"></i> Geser
+            </span>
+        </div>
+    </div>
+    
+    <div class="maulid-books-slider-wrapper" id="maulidBooksWrapper">
+        <div class="maulid-books-track" id="maulidBooksTrack">
+            <div class="maulid-books-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat buku pilihan...</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="maulid-books-dots" id="maulidBooksDots">
+        <!-- Dots akan di-render oleh JavaScript -->
+    </div>
+</div>
+      
+      
+      
+      
+      
+      
+      
+      <!--
+
+      <div class="book-categories" id="bookCategories">
+        <button class="active" onclick="filterBookCategory('random', this)">Semua</button>
+        
+        
+        
+   
+    <button onclick="filterBookCategory('indonesia_history', this)" style="background: linear-gradient(135deg, rgba(255,0,0,0.1), rgba(255,255,255,0.05)); border-color: rgba(255,0,0,0.2); color: #ff6b6b;">
+        🇮🇩 HUT RI ke-81
+    </button>
+    
+    
+    
+    
+        
+        
+        
+        <button onclick="filterBookCategory('fiction', this)">Fiksi</button>
+        <button onclick="filterBookCategory('science', this)">Sains</button>
+        <button onclick="filterBookCategory('history', this)">Sejarah</button>
+        <button onclick="filterBookCategory('technology', this)">Teknologi</button>
+        <button onclick="filterBookCategory('art', this)">Seni</button>
+        <button onclick="filterBookCategory('philosophy', this)">Filosofi</button>
+        <button onclick="filterBookCategory('psychology', this)">Psikologi</button>
+        <button onclick="filterBookCategory('business', this)">Bisnis</button>
+        <button onclick="filterBookCategory('health', this)">Kesehatan</button>
+        <button onclick="filterBookCategory('travel', this)">Travel</button>
+        <button onclick="filterBookCategory('religion', this)">Agama</button>
+        <button onclick="filterBookCategory('poetry', this)">Puisi</button>
+        <button onclick="filterBookCategory('biography', this)">Biografi</button>
+      </div>
+      
+      -->
+      
+<div class="book-categories" id="bookCategories">
+    <button class="active" onclick="filterBookCategory('random', this)">Semua</button>
+    <button onclick="filterBookCategory('business', this)">Bisnis</button>
+    <button onclick="filterBookCategory('finance', this)">Keuangan</button>
+    <button onclick="filterBookCategory('marketing', this)">Marketing</button>
+    <button onclick="filterBookCategory('self_improvement', this)">Pengembangan Diri</button>
+    <button onclick="filterBookCategory('psychology', this)">Psikologi</button>
+    <button onclick="filterBookCategory('leadership', this)">Kepemimpinan</button>
+    <button onclick="filterBookCategory('productivity', this)">Produktivitas</button>
+    <button onclick="filterBookCategory('economics', this)">Ekonomi</button>
+    <button onclick="filterBookCategory('philosophy', this)">Filosofi</button>
+    <button onclick="filterBookCategory('biography', this)">Biografi</button>
+    <button onclick="filterBookCategory('fiction', this)">Fiksi</button>
+</div>
+      
+    
+      
+      
+      
+      
+
+      <div class="book-grid" id="bookList">
+        <div class="book-loading"><i class="fas fa-spinner fa-spin"></i> Memuat buku...</div>
+      </div>
+
+      <div class="load-more-wrap" id="bookLoadMoreWrap" style="display:none;">
+        <button class="btn-load-more" onclick="loadMoreBooks()"><i class="fas fa-chevron-down"></i> Muat Lebih Banyak</button>
+      </div>
+
+      <br><br><br>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  PAGE: CART (Diperbaiki)
+  ============================================================ -->
+  <div id="cartPage" class="page">
+    <div class="page-wrapper">
+        <!--
+      <div class="section-title"><i class="fas fa-shopping-cart"></i><span>Keranjang & Checkout</span></div>
+      -->
+      <div class="cart-checkout-wrapper">
+        <div id="cartItems"></div>
+        
+        <div class="checkout-form">
+          <h4><i class="fas fa-user"></i> Detail Pemesan</h4>
+          <input type="text" id="customerName" placeholder="Nama Lengkap" required>
+          <input type="text" id="customerPhone" placeholder="Nomor WhatsApp" required>
+          <input type="text" id="customerDesign" placeholder="Desain yang dibutuhkan" required>
+          <textarea id="customerNote" placeholder="Detail spesifikasi desain..."></textarea>
+        </div>
+        
+        <div class="checkout-summary" id="checkoutSummary">
+          <div class="row"><span>Subtotal</span><span id="subtotal">Rp 0</span></div>
+          <div class="row"><span>Ongkir</span><span>Rp 0</span></div>
+          <div class="row total"><span>Total</span><span id="totalPrice">Rp 0</span></div>
+          <button class="btn-checkout" id="submitOrderBtn" onclick="submitOrder()"><i class="fas fa-check-circle"></i> Konfirmasi Pesanan</button>
+        </div>
+      </div>
+      <br><br><br>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  DETAIL POPUP
+  ============================================================ -->
+  <div class="detail-modal" id="detailModal" onclick="closeDetailOutside(event)">
+    <div class="detail-content">
+      <!--
+      <button class="close-detail" onclick="closeDetail()"><i class="fas fa-times"></i></button>
+      -->
+      <div id="detailBody"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+  POPUP PILIH PRO/HEMAT
+  ============================================================ -->
+  <div class="popup-overlay" id="popupOverlay" onclick="closePopupOutside(event)">
+    <div class="popup-box">
+      <button class="close-popup" onclick="closePopup()"><i class="fas fa-times"></i></button>
+      <h2 id="popupTitle"> Pilih Paket</h2>
+      <p id="popupDesc">Anda memilih tema <strong id="popupTema">GOLD</strong>. Silakan pilih paket yang sesuai dengan kebutuhan Anda.</p>
+      <div class="popup-buttons">
+        <a href="formulir1430120719951999msk.html" class="btn-popup-pro"><i class="fas fa-crown"></i> PRO</a>
+        <a href="formulir-hemat19s9k9199507301412.html" class="btn-popup-hemat"><i class="fas fa-coins"></i> HEMAT</a>
+      </div>
+    </div>
+  </div>
+
+<!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ --><!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ --><!-- ============================================================
+  PAGE: PROFIL
+  ============================================================ -->
+<div id="profilePage" class="page">
+    <div class="page-wrapper">
+        <br>
+        <!--
+        <div class="section-title">
+            <i class="fas fa-user"></i>
+            <span>Profil Saya</span>
+        </div>
+        -->
+        
+        <div class="profile-page-wrapper">
+            <!-- Profile Header - Instagram Style -->
+            <div class="profile-header-instagram">
+                <div class="profile-avatar-wrapper">
+                    <div class="profile-avatar-large" id="profileAvatarDisplay">
+                        <span id="profileAvatarText">U</span>
+                    </div>
+                    <div class="avatar-upload-overlay" id="avatarUploadOverlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <input type="file" id="avatarUpload" accept="image/*" onchange="uploadAvatar(event)">
+                </div>
+                <div class="profile-info-stats">
+                    <div class="profile-name-display" id="profileNameDisplay">Pengunjung</div>
+                    <div class="profile-email-display" id="profileEmailDisplay">-</div>
+                    <div class="profile-stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number" id="statKarya">0</div>
+                            <div class="stat-label">Postingan</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="statLikes">0</div>
+                            <div class="stat-label">Like</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bio -->
+            <div class="profile-bio" id="profileBioDisplay">Login untuk membagikan karya Anda</div>
+            
+            <!-- Action Buttons
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px;">
+                <button class="btn-edit-profile" onclick="openEditProfileModal()" id="editProfileBtn" style="display:none;">
+                    <i class="fas fa-pen"></i> Edit Profil
+                </button>
+                <button class="btn-edit-profile" onclick="openSettingsModal()" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+                    <i class="fas fa-cog"></i> Pengaturan
+                </button>
+                <button class="btn-logout" onclick="logoutUser()" id="logoutBtn" style="display:none;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            -->
+            <!-- Action Buttons - 3 TOMBOL -->
+<div style="display:flex;gap:3px;flex-wrap:wrap;margin:3px 0 10px; ">
+    <button class="btn-edit-profile" onclick="openEditProfileModal()" id="editProfileBtn" style="display:none;">
+        <i class="fas fa-pen"></i> Edit
+    </button>
+    
+    <!--
+    <button class="btn-edit-profile" onclick="openSettingsModal()" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+        <i class="fas fa-cog"></i> Pengaturan
+    </button>
+    -->
+<button class="btn-edit-profile" onclick="navigateTo('settings')" id="settingsBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);">
+    <i class="fas fa-cog"></i> Pengaturan
+</button>
+
+
+
+    <!-- TAMBAHKAN TOMBOL NOTIFIKASI -->
+    <button class="btn-edit-profile" onclick="openNotificationModal()" id="notifProfileBtn" style="display:none;background:var(--bg-input);color:var(--text-secondary);position:relative;">
+        <i class="fas fa-heart"></i> Notifikasi
+        <span class="notif-dot-profile" id="notifDotProfile" style="position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:#ef4444;border:2px solid var(--bg-primary);display:none;"></span>
+    </button>
+
+    <!--
+    <button class="btn-logout" onclick="logoutUser()" id="logoutBtn" style="display:none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    -->
+</div>
+
+
+
+            
+            <!-- Join Prompt (untuk guest) -->
+            <div class="profile-join-prompt" id="joinPrompt">
+                <h4>✨ Login untuk Berbagi Karya</h4>
+                <p>Masuk untuk mengupload foto/video dan berinteraksi dengan komunitas.</p>
+                <button class="btn-join-small" onclick="openAuthModal()">
+                    <i class="fas fa-sign-in-alt"></i> Login Sekarang
+                </button>
+            </div>
+            
+            <!-- Posts Grid -->
+            <div style="margin-top:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding:0 4px;">
+                    <span style="font-size:14px;font-weight:600;color:var(--text-primary);">
+                        <i class="fas fa-images"></i> Postingan
+                    </span>
+                </div>
+                <div class="profile-posts-grid" id="profilePostsGrid">
+                    <div class="profile-posts-empty">
+                        <i class="fas fa-image"></i>
+                        <span>Belum ada postingan</span>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br><br>
+        </div>
+    
+        <!--
+    </div>
+</div>
+  -->
+  
+  
+        <!-- ======== CHART AKTIVITAS ======== -->
+        <div style="padding:0 16px;">
+            <div class="chart-container" id="chartContainer">
+                <div class="chart-header">
+                    <div class="chart-title">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Riwayat Aktivitas</span>
+                    </div>
+                    <div class="chart-stats">
+                        <span class="stat-item">
+                            <span class="dot news"></span> Berita
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot stock"></span> Gallery
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot ai"></span> AI
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot book"></span> Buku
+                        </span>
+                        <span class="stat-item">
+                            <span class="dot shop"></span> Shop
+                        </span>
+                    </div>
+                </div>
+                <div class="chart-wrapper" id="chartWrapper">
+                    <canvas id="activityChart"></canvas>
+                </div>
+                <div class="chart-legend" id="chartLegend"></div>
+                <div class="chart-total" id="chartTotal"></div>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+        <br><br><br>
+    </div>
+</div>
+
+
+
+
+<!-- ============================================================
+  PAGE: SETTINGS
+  ============================================================ -->
+<div id="settingsPage" class="page">
+    <div class="page-wrapper">
+        <div class="settings-page-wrapper">
+            <br>
+            <!-- Header -->
+            <div class="settings-header">
+                
+                <button class="settings-back" onclick="navigateTo('profile')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="settings-title"><i class="fas fa-cog"></i> Pengaturan</div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="settings-profile-card" onclick="navigateTo('profile')">
+                <div class="sp-avatar" id="settingsAvatar">U</div>
+                <div class="sp-info">
+                    <div class="sp-name" id="settingsName">Pengunjung</div>
+                    <div class="sp-email" id="settingsEmail">-</div>
+                </div>
+                <div class="sp-arrow"><i class="fas fa-chevron-right"></i></div>
+            </div>
+
+            <!-- Menu Groups -->
+            <div class="settings-menu-group">
+                <div class="group-label">Akun</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('account')">
+                    <div class="mi-icon purple"><i class="fas fa-user"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Akun</div>
+                        <div class="mi-desc">Edit profil, email, kata sandi</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('privacy')">
+                    <div class="mi-icon blue"><i class="fas fa-shield-alt"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Privasi</div>
+                        <div class="mi-desc">Kelola privasi akun Anda</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Tampilan</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('appearance')">
+                    <div class="mi-icon orange"><i class="fas fa-palette"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Tampilan & Tema</div>
+                        <div class="mi-desc">Gelap, Terang, HUT RI</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('language')">
+                    <div class="mi-icon green"><i class="fas fa-globe"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Bahasa Aplikasi</div>
+                        <div class="mi-desc">Indonesia / English</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Notifikasi</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('notifications')">
+                    <div class="mi-icon pink"><i class="fas fa-bell"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Notifikasi</div>
+                        <div class="mi-desc">Kelola notifikasi Anda</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <div class="settings-menu-group">
+                <div class="group-label">Lainnya</div>
+                <div class="settings-menu-item" onclick="openSettingsDetail('storage')">
+                    <div class="mi-icon cyan"><i class="fas fa-database"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Penyimpanan & Data</div>
+                        <div class="mi-desc">Kelola data dan cache</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='privvcy.html'">
+                    <div class="mi-icon blue"><i class="fas fa-file-contract"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Kebijakan Privasi</div>
+                        <div class="mi-desc">Baca kebijakan privasi</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='hellpp.html'">
+                    <div class="mi-icon blue"><i class="fas fa-question-circle"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Pusat Bantuan</div>
+                        <div class="mi-desc">FAQ dan dukungan</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+                <div class="settings-menu-item" onclick="window.location.href='tentngu67.html'">
+                    <div class="mi-icon blue"><i class="fas fa-info-circle"></i></div>
+                    <div class="mi-info">
+                        <div class="mi-title">Tentang Aplikasi</div>
+                        <div class="mi-desc">Versi 5.0.0</div>
+                    </div>
+                    <div class="mi-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+
+    <!-- TAMBAHKAN LOGOUT DI SINI -->
+    <div class="settings-menu-item" onclick="logoutUser()" style="border-color:rgba(239,68,68,0.15);">
+        <div class="mi-icon red"><i class="fas fa-sign-out-alt"></i></div>
+        <div class="mi-info">
+            <div class="mi-title" style="color:#ef4444;">Logout</div>
+            <div class="mi-desc">Keluar dari akun Anda</div>
+        </div>
+        <div class="mi-arrow" style="color:#ef4444;"><i class="fas fa-chevron-right"></i></div>
+    </div>
+    
+    
+    
+                
+                
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+
+<!-- ============================================================
+  PREMIUM MODAL / POPUP
+  ============================================================ 
+<div class="premium-modal" id="premiumModal" onclick="closePremiumOutside(event)">
+    <div class="premium-modal-content">
+        <button class="premium-modal-close" onclick="closePremiumModal()"><i class="fas fa-times"></i></button>
+        
+        <!-- Form Section 
+        <div id="premiumFormSection">
+            <div class="premium-header">
+                <span class="premium-icon"><i class="fas fa-crown"></i></span>
+                <h2>Bergabung Menjadi <span class="highlight">Premium Creator</span></h2>
+                <p>Bagikan karya Anda di galeri Alovera dan dapatkan kesempatan untuk tampil di halaman utama.</p>
+            </div>
+
+            <form id="premiumForm" onsubmit="submitPremium(event)">
+                <div class="premium-form-group">
+                    <label>Email <span class="required">*</span></label>
+                    <input type="email" id="premiumEmail" placeholder="Masukkan email aktif Anda" required>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Nama Pengguna <span class="required">*</span></label>
+                    <input type="text" id="premiumUsername" placeholder="Nama lengkap atau nama panggilan" required>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Deskripsi Diri / Portofolio</label>
+                    <textarea id="premiumDescription" placeholder="Ceritakan tentang diri Anda, keahlian, dan pengalaman di bidang desain/fotografi..." maxlength="1000" oninput="updateCharCount(this)"></textarea>
+                    <div class="char-count" id="charCount">0 / 1000</div>
+                </div>
+
+                <div class="premium-form-group">
+                    <label>Upload Karya (Foto/Video) <span class="required">*</span></label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <span class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></span>
+                        <div class="upload-text">Drag & drop atau <strong>klik untuk pilih</strong> file</div>
+                        <div class="upload-hint">JPG, PNG, MP4 • Maks 20 MB</div>
+                        <input type="file" id="premiumFile" accept="image/*,video/*" onchange="handleFileSelect(this)" required>
+                        <div class="file-preview" id="filePreview">
+                            <div>
+                                <div class="file-name" id="fileName">nama-file.jpg</div>
+                                <div class="file-size" id="fileSize">0 MB</div>
+                            </div>
+                            <span class="file-remove" onclick="removeFile()"><i class="fas fa-times-circle"></i> Hapus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premium-info-box">
+                    <div class="info-row"><i class="fas fa-clock"></i>
+                   
+                    <strong>7 Hari</strong> •
+                    
+                    Proses revisi maksimal 7 hari kerja</div>
+                    <div class="info-row"><i class="fas fa-check-circle"></i> Karya akan direview oleh tim kurator kami</div>
+                    <div class="info-row"><i class="fas fa-star"></i> Jika lolos, karya akan tampil di galeri premium</div>
+                </div>
+
+                <button type="submit" class="btn-premium-submit" id="premiumSubmitBtn">
+                    <i class="fas fa-paper-plane"></i> Kirim Permohonan
+                </button>
+            </form>
+        </div>
+
+        <!-- Success Section
+        <div class="premium-success" id="premiumSuccess">
+            <span class="success-icon"><i class="fas fa-check-circle"></i></span>
+            <h3>Permohonan Terkirim!</h3>
+            <p>Terima kasih telah bergabung menjadi Premium Creator. Tim kurator kami akan mereview karya Anda dalam waktu maksimal 7 hari.</p>
+            <p style="margin-top:12px;color:#4a6a7a;font-size:13px;">Kami akan menghubungi Anda melalui email.</p>
+            <button class="btn-premium-submit" onclick="closePremiumModal()" style="margin-top:20px;max-width:200px;margin-left:auto;margin-right:auto;">
+                <i class="fas fa-check"></i> Tutup
+            </button>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+
+
+
+
+<!-- ============================================================
+  POPUP HUT RI KE-81
+  ============================================================ 
+<div class="hut-popup-overlay" id="hutPopup">
+    <div class="hut-popup-content">
+        <button class="hut-popup-close" onclick="closeHutPopup()">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="hut-flag-decoration">🇮🇩</div>
+
+        <div class="hut-popup-title">
+            <span class="hut-year">HUT RI ke-81</span>
+         
+        </div>
+
+        <div class="hut-popup-subtitle">
+            Dirgahayu Indonesiaku! Rayakan semarak kemerdekaan dengan fitur-fitur spesial kami.
+        </div>
+
+        <div class="hut-popup-divider">
+            <span>✦ SEMARAK MERDEKA ✦</span>
+        </div>
+
+        <div class="hut-popup-features">
+            <a href="#" onclick="navigateTo('news'); closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon news"><i class="fas fa-newspaper"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Berita HUT RI</div>
+                    <div class="feature-desc">Update terkini perayaan kemerdekaan di seluruh Indonesia</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('stock');  
+            
+
+            
+            
+            closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon stock"><i class="fas fa-images"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Galeri Kemerdekaan</div>
+                    <div class="feature-desc">Koleksi foto dan video spesial HUT RI dari seluruh nusantara</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('books');
+            
+            closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon books"><i class="fas fa-book"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Pustaka Sejarah</div>
+                    <div class="feature-desc">Koleksi buku sejarah dan perjuangan kemerdekaan Indonesia</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+
+            <a href="#" onclick="navigateTo('stock'); closeHutPopup();" class="hut-feature-item">
+                <div class="feature-icon video"><i class="fas fa-video"></i></div>
+                <div class="feature-info">
+                    <div class="feature-name"> Video Spesial</div>
+                    <div class="feature-desc">Dokumentasi perjuangan dan kemeriahan HUT RI ke-81</div>
+                </div>
+                <div class="feature-arrow"><i class="fas fa-chevron-right"></i></div>
+            </a>
+        </div>
+
+        <div class="hut-popup-footer">
+            
+            <div class="hut-countdown">
+                 <strong>Klik Kategori HUT RI ke-81</strong>
+            </div>
+            <br>
+            
+            <button class="btn-hut-explore" onclick="closeHutPopup()">
+                <i class="fas fa-rocket"></i> Jelajahi Kategori HUT RI
+            </button>
+        </div>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  TOMBOL MELAYANG HUT RI
+  ============================================================ 
+<button class="hut-float-btn" id="hutFloatBtn" onclick="openHutPopup()" title="Semarak HUT RI ke-81">
+    🇮🇩
+    <span class="hut-float-tooltip">✨ HUT RI ke-81</span>
+    <span class="hut-float-badge">81</span>
+</button>
+
+-->
+<!-- ============================================================
+  NOTIFICATION MODAL
+  ============================================================ -->
+<div class="notif-modal" id="notifModal" onclick="closeNotifOutside(event)">
+    <div class="notif-content">
+        <button class="notif-close" onclick="closeNotificationModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="notif-title">
+            <i class="fas fa-heart"></i> Notifikasi
+        </div>
+        <div class="notif-subtitle">Aktivitas terbaru dari komunitas</div>
+        <div id="notifList">
+            <div class="notif-empty">
+                <i class="fas fa-inbox"></i>
+                <p>Belum ada notifikasi</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- ============================================================
+  AI LIGHTBOX
+  ============================================================ 
+<div class="ai-lightbox-overlay" id="aiLightbox">
+    <button class="ai-lightbox-close" id="aiLightboxClose">
+        <i class="fas fa-times"></i>
+    </button>
+    <img id="aiLightboxImage" src="" alt="Preview" />
+    <button class="ai-lightbox-download" id="aiLightboxDownload">
+        <i class="fas fa-download"></i> Unduh Gambar HD
+    </button>
+</div>
+-->
+
+
+
+
+
+
+<!-- ============================================================
+  GOOGLE SEARCH MODAL
+  ============================================================ -->
+<div class="google-search-modal" id="googleSearchModal" onclick="closeGoogleSearchOutside(event)">
+    <div class="google-search-content">
+        <div class="google-search-header">
+            <div class="google-search-title">
+                <i class="fab fa-google" style="color:#ea4335;"></i>
+                <span>Google Search with Alovera</span>
+            </div>
+            <button class="google-search-close" onclick="closeGoogleSearch()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="google-search-body">
+            <!-- Placeholder untuk Google CSE -->
+            <div class="gcse-search" data-queryParameterName="q"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  AI LIGHTBOX
+  ============================================================ -->
+<div class="ai-lightbox-overlay" id="aiLightbox" onclick="closeAloveraLightboxOutside(event)">
+    <button class="ai-lightbox-close" id="aiLightboxClose" onclick="closeAloveraLightbox()" aria-label="Tutup">
+        <i class="fas fa-times"></i>
+    </button>
+    <img id="aiLightboxImage" src="" alt="Preview" onclick="event.stopPropagation()" />
+    <button class="ai-lightbox-download" id="aiLightboxDownload" onclick="downloadAloveraLightboxImage()">
+        <i class="fas fa-download"></i> Unduh Gambar HD
+    </button>
+    
+    
+    
+
+    <!-- ============================================================
+  GOOGLE SEARCH MODAL
+  ============================================================
+  
+<div class="gcse-search">
+
+
+<div class="google-search-modal" id="googleSearchModal" onclick="closeGoogleSearchOutside(event)">
+    <div class="google-search-content">
+        <div class="google-search-header">
+            <div class="google-search-title">
+                <i class="fab fa-google" style="color:#ea4335;"></i>
+                <span>Google Search</span>
+            </div>
+            <button class="google-search-close" onclick="closeGoogleSearch()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="google-search-body">
+            <!-- Placeholder untuk Google CSE 
+            <div class="gcse-search" data-queryParameterName="q"></div>
+        </div>
+    </div>
+</div>
+
+    </div>
+    -->
+
+
+
+</div>
+
+
+
+
+<!-- ============================================================
+  MODAL EDIT PROFIL
+  ============================================================ 
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeEditProfile()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-title">Edit Profil</div>
+        <div class="modal-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna <span class="required">*</span></label>
+                <input type="text" id="editProfileName" placeholder="Masukkan nama Anda" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <input type="email" id="editProfileEmail" placeholder="Masukkan email Anda" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Bio / Deskripsi</label>
+                <textarea id="editProfileBio" placeholder="Ceritakan sedikit tentang diri Anda..." maxlength="200"></textarea>
+                <div style="text-align:right;font-size:11px;color:var(--text-muted);margin-top:2px;">
+                    <span id="bioCharCount">0</span>/200
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Profil
+            </button>
+        </form>
+    </div>
+</div>
+
+-->
+
+<!-- ============================================================
+  EDIT PROFIL MODAL
+  ============================================================ -->
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="edit-content">
+        <button class="edit-close" onclick="closeEditProfileModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="edit-title">Edit Profil</div>
+        <div class="edit-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveEditProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna</label>
+                <input type="text" id="editUsername" placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="editBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+                <div style="text-align:right;font-size:11px;color:var(--text-muted);margin-top:2px;">
+                    <span id="editBioCount">0</span>/200
+                </div>
+            </div>
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Perubahan
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================================================
+  POPUP IKLAN FULLSCREEN
+  ============================================================ -->
+<div class="ad-popup-overlay" id="adPopup" onclick="closeAdPopupOutside(event)">
+    <div class="ad-popup-content">
+        <button class="ad-popup-close" onclick="closeAdPopup()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="adPopupImage" src="" alt="Iklan" />
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ============================================================
+  PAGE: MAULID NEWS - DAFTAR BERITA SPESIAL MAULID
+  ============================================================ 
+<div id="maulidPage" class="page">
+    <div class="page-wrapper">
+        <div class="maulid-page-wrapper">
+            <!-- Header 
+            <br>
+            <div class="maulid-page-header">
+                
+                
+                <!--
+                <div class="maulid-page-icon"><i class="fas fa-star-and-crescent"></i></div>
+                
+                 <i class="fas fa-bank"></i>
+                
+                <div class="maulid-page-title">Edukasi dan Finansial</div>
+                <span class="maulid-page-badge">Grow Insight</span>
+            </div>
+            <div class="maulid-page-subtitle">
+                Kumpulan berita dan edukasi seputar bisnis, ekonomi, finansial dan informasi lainnya yang mendukung kamu untuk menambah wawasan
+            </div>
+            
+            <!-- News Grid 
+            <div class="maulid-news-grid" id="maulidNewsGrid">
+                <div class="maulid-page-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Memuat berita Maulid...</span>
+                </div>
+            </div>
+            
+            <!-- Load More 
+            <div class="maulid-page-loadmore" id="maulidLoadMore">
+                <button class="btn-load-more" onclick="loadMoreMaulidNews()">
+                    <i class="fas fa-chevron-down"></i> Muat Lebih Banyak
+                </button>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+-->
+
+
+
+<!-- ============================================================
+  PAGE: EDUKASI & FINANSIAL - GROW INSIGHT
+  ============================================================ -->
+<div id="maulidPage" class="page">
+    <div class="page-wrapper">
+        <div class="maulid-page-wrapper fin-page-wrapper">
+            <!-- Header -->
+            <br>
+            <div class="maulid-page-header fin-page-header">
+                <div class="maulid-page-icon fin-page-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="maulid-page-title">Edukasi dan Finansial</div>
+                <span class="maulid-page-badge fin-page-badge">Tips</span>
+            </div>
+            <div class="maulid-page-subtitle">
+                Kumpulan berita dan edukasi seputar bisnis, ekonomi, finansial dan informasi bermanfaat lainnya untuk menambah wawasan Anda.
+            </div>
+            
+            <!-- News Grid -->
+            <div class="maulid-news-grid" id="maulidNewsGrid">
+                <div class="maulid-page-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Memuat berita...</span>
+                </div>
+            </div>
+            
+            <!-- Load More -->
+            <div class="maulid-page-loadmore" id="maulidLoadMore">
+                <button class="btn-load-more" onclick="loadMoreMaulidNews()">
+                    <i class="fas fa-chevron-down"></i> Muat Lebih Banyak
+                </button>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+</div>
+
+
+<!-- ============================================================
+  PAGE: Short VIDEO - SEPERTI TIKTOK/REELS
+  ============================================================
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;">
+       
+        
+        
+        <div class="feed-container" id="feedContainer">
+          
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<!--
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;">
+        
+         ============================================================
+        KATEGORI FEED VIDEO - TRANSPARAN & MODERN
+        ============================================================ 
+        <div class="feed-categories-wrapper" id="feedCategoriesWrapper">
+            <div class="feed-categories-track" id="feedCategoriesTrack">
+               
+            </div>
+        </div>
+        
+        <div class="feed-container" id="feedContainer">
+           
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+-->
+
+<div id="feedPage" class="page">
+    <div class="page-wrapper" style="padding-bottom:0;height:100vh;background:#000;position:relative;">
+        
+              <!-- ============================================================
+        HEADER TITLE - Bawa Santai Aja Dulu
+        ============================================================ -->
+        <div class="feed-header-title">
+            <i class="fas fa-coffee"></i>
+            <span class="feed-header-text">Bawa Santai Aja Dulu</span>
+            <span class="feed-header-badge">Grow Happy</span>
+        </div>
+        
+        
+        
+        
+        
+        <div class="feed-categories-wrapper" id="feedCategoriesWrapper">
+            
+            
+            <div class="feed-categories-track" id="feedCategoriesTrack"></div>
+        </div>
+        <div class="feed-container" id="feedContainer">
+            <div class="feed-loading" id="feedLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Memuat video...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- ============================================================
+  LOGIN MODAL
+  ============================================================ -->
+<div class="auth-modal" id="authModal" onclick="closeAuthOutside(event)">
+    <div class="auth-content">
+        <button class="auth-close" onclick="closeAuthModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="auth-title" id="authTitle">Masuk</div>
+        <div class="auth-subtitle" id="authSubtitle">Login untuk mengakses semua fitur</div>
+        <div class="auth-error" id="authError"></div>
+        
+        <form id="authForm" onsubmit="handleAuth(event)">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="authEmail" placeholder="Masukkan email Anda" required>
+            </div>
+            <div class="form-group">
+                <label>Kata Sandi</label>
+                <input type="password" id="authPassword" placeholder="Masukkan kata sandi" required>
+            </div>
+            <div class="form-group" id="authBioGroup" style="display:none;">
+                <label>Bio (opsional)</label>
+                <textarea id="authBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+            </div>
+            <button type="submit" class="btn-auth" id="authBtn">Masuk</button>
+        </form>
+        
+        <div class="auth-switch">
+            <span id="authSwitchText">Belum punya akun?</span>
+            <a id="authSwitchLink" onclick="toggleAuthMode()">Daftar</a>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  UPLOAD MODAL
+  ============================================================ -->
+<div class="upload-modal" id="uploadModal" onclick="closeUploadOutside(event)">
+    <div class="upload-content">
+        <button class="upload-close" onclick="closeUploadModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="upload-title">Upload Postingan</div>
+        
+        <br>
+        
+        <form id="uploadForm" onsubmit="handleUploadPost(event)">
+            <div class="form-group">
+                <label>Deskripsi (max 500 karakter)</label>
+                <textarea id="uploadDescription" placeholder="Tulis deskripsi postingan Anda..." maxlength="500" oninput="updateUploadCharCount(this)"></textarea>
+                <div class="char-count" id="uploadCharCount">0 / 500</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Upload File <span style="color:#ef4444;">*</span></label>
+                <div class="upload-area" id="uploadArea">
+                    <span class="upload-icon-big"><i class="fas fa-cloud-upload-alt"></i></span>
+                    <div class="upload-text">Drag & drop atau <strong>klik untuk pilih</strong> file</div>
+                    <div class="upload-hint">JPG, PNG, MP4 • Maks 10 MB</div>
+                    <input type="file" id="uploadFile" accept="image/*,video/*" onchange="handleUploadFileSelect(this)" required>
+                    <div class="file-preview" id="uploadFilePreview">
+                        <div class="file-info">
+                            <span class="file-name" id="uploadFileName">nama-file.jpg</span>
+                            <span class="file-size" id="uploadFileSize">0 MB</span>
+                            <span class="file-remove" onclick="removeUploadFile()"><i class="fas fa-times-circle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="upload-subtitle">Pastikan Anda telah membaca dan mematuhi kebijakan privasi baru kami.</div>
+        
+            <button type="submit" class="btn-upload-submit" id="uploadSubmitBtn">
+                <i class="fas fa-paper-plane"></i> Posting
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- ============================================================
+  POPUP POSTINGAN DETAIL
+  ============================================================ -->
+<div class="post-detail-modal" id="postDetailModal" onclick="closePostDetailOutside(event)">
+    <div class="post-detail-content">
+        <button class="post-detail-close" onclick="closePostDetail()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="postDetailBody">
+            <!-- Di-render oleh JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+  EDIT PROFIL MODAL
+  ============================================================ 
+<div class="edit-profile-modal" id="editProfileModal" onclick="closeEditProfileOutside(event)">
+    <div class="edit-content">
+        <button class="edit-close" onclick="closeEditProfileModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="edit-title">Edit Profil</div>
+        <div class="edit-subtitle">Perbarui informasi profil Anda</div>
+        
+        <form id="editProfileForm" onsubmit="saveEditProfile(event)">
+            <div class="form-group">
+                <label>Nama Pengguna</label>
+                <input type="text" id="editUsername" placeholder="Masukkan nama pengguna">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="editBio" placeholder="Ceritakan tentang diri Anda..." maxlength="200"></textarea>
+            </div>
+            <button type="submit" class="btn-save-profile">
+                <i class="fas fa-save"></i> Simpan Perubahan
+            </button>
+        </form>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  SETTINGS MODAL
+  ============================================================ 
+<div class="settings-modal" id="settingsModal" onclick="closeSettingsOutside(event)">
+    <div class="settings-content">
+        <button class="settings-close" onclick="closeSettingsModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="settings-title">⚙️ Pengaturan</div>
+        <div class="settings-subtitle">Kelola preferensi aplikasi Anda</div>
+        
+      
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-globe"></i> Bahasa</div>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="setLanguage('id', this)">🇮🇩 Indonesia</button>
+                <button class="lang-btn" onclick="setLanguage('en', this)">🇬🇧 English</button>
+            </div>
+        </div>
+        
+       
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-link"></i> Informasi</div>
+            <div class="settings-links">
+                <a href="privvcy.html"><i class="fas fa-shield-alt"></i> Kebijakan Privasi</a>
+                <a href="hellpp.html"><i class="fas fa-question-circle"></i> Pusat Bantuan</a>
+                <a href="tentngu67.html"><i class="fas fa-info-circle"></i> Tentang Aplikasi</a>
+            </div>
+        </div>
+        
+        
+        <div class="settings-group">
+            <div class="group-title"><i class="fas fa-palette"></i> Tema</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button class="lang-btn" onclick="setThemeFromSettings('dark')">🌙 Gelap</button>
+                <button class="lang-btn" onclick="setThemeFromSettings('light')">☀️ Terang</button>
+                <button class="lang-btn" onclick="setThemeFromSettings('hutri')">🇮🇩 HUT RI</button>
+            </div>
+        </div>
+        
+        <button class="btn-save-profile" onclick="closeSettingsModal()" style="margin-top:8px;">
+            <i class="fas fa-check"></i> Tutup
+        </button>
+    </div>
+</div>
+-->
+
+
+<!-- ============================================================
+  SETTINGS DETAIL MODAL
+  ============================================================ -->
+<div class="settings-detail-modal" id="settingsDetailModal" onclick="closeSettingsDetailOutside(event)">
+    <div class="sd-content">
+        <button class="sd-close" onclick="closeSettingsDetail()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="sd-title" id="sdTitle">Pengaturan</div>
+        <div class="sd-subtitle" id="sdSubtitle">Kelola preferensi Anda</div>
+        <div id="sdBody">
+            <!-- Di-render oleh JavaScript -->
+        </div>
+    </div>
+</div>
+
+
+
+  <!-- ============================================================
+  BOTTOM NAV (4 Menu: Home, Berita, Stock, Buku)
+  ============================================================ -->
+  <nav class="bottom-nav">
+      
+      <!--
+    <button class="nav-item active" onclick="navigateTo('home')" id="navHome"><i class="fas fa-home"></i><span>Home</span></button>
+    -->
+
+    
+
+    
+<button class="nav-item" onclick="navigateTo('news')" id="navNews"><i class="fas fa-newspaper"></i><span>News</span></button>
+    
+    
+
+    <button class="nav-item" onclick="navigateTo('feed')" id="navFeed">
+        <i class="fas fa-play-circle"></i><span>Play</span>
+    </button>
+    
+    
+
+    <button class="btn-ai-chat" id="btnAiChat" onclick="navigateTo('home')" id="navHome">
+    <span class="ai-gradient-text">AI</span></button>
+    
+
+    
+
+
+    <button class="nav-item" onclick="navigateTo('stock')" id="navStock"><i class="fas fa-search"></i><span>Stock</span></button>
+    
+    
+    <button class="nav-item" onclick="navigateTo('books')" id="navBooks"><i class="fas fa-book"></i><span>Books</span></button>
+    
+    
+    
+    
+    <!--
+    <button class="nav-item" onclick="navigateTo('profile')" id="navProfile">
+        <div>
+           
+            <i class="fas fa-user"></i>
+        </div>
+        <span>Profil</span>
+    </button>
+    -->
+  </nav>
+
+  
+ 
+  
+    <script src="apxz240726-obfus.js"></script>
+    
+    <!--
+  <script src="ai.js"></script>
+  -->
+  
+  <script src="chat-obfus.js"></script>
+  
+  <script src="video-obfus.js"></script>
+
+
+
+  <script src="post-obfus.js"></script>
+  
+  
+  <script src="notif-obfus.js"></script>
+  
+  
+  <!--
+  <script src="https://assetsbcb.netlify.app/apxz240726.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/ai.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/chat.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/video.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/post.assets.js"></script>
+<script src="https://assetsbcb.netlify.app/notif.assets.js"></script>
+-->
+
 </body>
 </html>
