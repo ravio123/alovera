@@ -1,4 +1,4 @@
-package com.alovera99.ai;
+package com.aloveracom.app;
 
 import android.content.ContentValues;
 import android.net.Uri;
