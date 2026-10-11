@@ -1020,6 +1020,15 @@
       .canvas-modal-content .preset-grid {
         grid-template-columns: 1fr 1fr;
       }
+      
+      
+      .back-btn {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+
+
     }
 
     @media (min-width: 768px) {
@@ -1086,6 +1095,56 @@
         border-radius: 12px;
       }
     }
+    
+    
+    
+    
+    
+    /* ============================================================
+   PART 3.1: BACK BUTTON
+============================================================ */
+.back-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d0dbe8;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.back-btn:hover {
+  background: rgba(45, 156, 219, 0.15);
+  color: #6ac3ff;
+  border-color: rgba(45, 156, 219, 0.3);
+}
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+/* Update logo agar tidak menempel ke back button */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.header-left .logo {
+  min-width: 0;
+  overflow: hidden;
+}
+.header-left .logo span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   </style>
 </head>
 <body>
@@ -1127,10 +1186,21 @@
 
   <!-- ============================================================
        HEADER
-  ============================================================ -->
+  ============================================================ 
   <header class="header">
     <div class="logo"><i class="fas fa-camera"></i><span>Alovera Editor</span></div>
     <div class="header-actions">
+      -->
+      <header class="header">
+  <div class="header-left">
+    <a href="index.html" class="back-btn" id="backHomeBtn" title="Kembali ke Home">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="logo"><i class="fas fa-camera"></i><span>Alovera Editor</span></div>
+  </div>
+  <div class="header-actions">
+      
+      
       <button class="header-btn" id="newCanvasBtn"><i class="fas fa-plus"></i></button>
       <label for="uploadImage" class="header-btn"><i class="fas fa-image"></i></label>
       <input type="file" id="uploadImage" accept="image/*">
@@ -3216,6 +3286,48 @@
   });
 }
 
+
+
+
+// ============================================================
+//  PART 21: BACK TO HOME
+// ============================================================
+const backHomeBtn = document.getElementById('backHomeBtn');
+if (backHomeBtn) {
+  backHomeBtn.addEventListener('click', (e) => {
+    // Jika ada perubahan belum disimpan, konfirmasi dulu
+    const hasChanges = currentImage && (
+      texts.length > 0 ||
+      shapes.length > 0 ||
+      drawHistory.length > 0
+    );
+
+    if (hasChanges) {
+      const ok = confirm('Yakin ingin keluar? Perubahan yang belum diunduh akan hilang.');
+      if (!ok) {
+        e.preventDefault();
+        return;
+      }
+    }
+
+    // Simpan state terakhir sebelum keluar
+    try {
+      if (currentImage) saveImage();
+    } catch (err) {
+      console.warn('Gagal menyimpan state:', err);
+    }
+  });
+}
+
+// Support tombol back browser / gesture
+window.addEventListener('popstate', () => {
+  if (currentImage && (texts.length > 0 || shapes.length > 0)) {
+    const ok = confirm('Keluar dari editor? Perubahan yang belum diunduh akan hilang.');
+    if (!ok) {
+      history.pushState(null, '', location.href);
+    }
+  }
+});
 
 </script>
 
