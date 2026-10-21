@@ -8,15 +8,15 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.aloveracom.app"
+    namespace = "com.alovera99.ai"
     compileSdk = rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.aloveracom.app"
+        applicationId "com.alovera99.ai"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "4.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         aaptOptions {

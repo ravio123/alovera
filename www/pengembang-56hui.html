@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#6366f1"/>
+    <title>Laporkan — Alovera AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           ROOT VARIABLES
+           ============================================================ */
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --bg-body: #0d0d12;
+            --bg-card: #161620;
+            --bg-input: #1c1c28;
+            --bg-hover: #252538;
+            --text-primary: #e8e8f0;
+            --text-secondary: #b0b0c0;
+            --text-muted: #6b6b80;
+            --text-placeholder: #5a5a70;
+            --border: #2a2a3a;
+            --border-light: #35354a;
+            --error: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --radius-sm: 8px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 50px;
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+        }
+
+        [data-theme="light"] {
+            --bg-body: #f8f8fc;
+            --bg-card: #ffffff;
+            --bg-input: #ffffff;
+            --bg-hover: #eaeaef;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a60;
+            --text-muted: #8888a0;
+            --text-placeholder: #9999af;
+            --border: #dcdce5;
+            --border-light: #e5e5ef;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .header-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-color: var(--primary);
+        }
+
+        .header-title {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .header-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-title h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-title span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: block;
+            font-weight: 400;
+        }
+
+        /* ============================================================
+           MAIN CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* ============================================================
+           INFO BANNER
+           ============================================================ */
+        .info-banner {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .info-banner-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-gradient);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .info-banner-content h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .info-banner-content p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           FORM STYLES
+           ============================================================ */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-label i {
+            font-size: 0.8rem;
+            color: var(--primary);
+            width: 16px;
+            text-align: center;
+        }
+
+        .form-label .optional {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: auto;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: var(--bg-input);
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            max-height: 300px;
+        }
+
+        .char-count {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        .form-hint {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-hint i {
+            font-size: 0.7rem;
+            color: var(--warning);
+        }
+
+        /* ============================================================
+           UPLOAD BOX
+           ============================================================ */
+        .upload-section {
+            margin-bottom: 20px;
+        }
+
+        .upload-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .upload-box {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .upload-box:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .upload-box .plus-icon {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .upload-box span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 0 4px;
+        }
+
+        .preview {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            max-width: 100%;
+            padding-bottom: 6px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .preview::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .preview::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 10px;
+        }
+
+        .preview-item {
+            position: relative;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+
+        .preview-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--error);
+            color: #fff;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.7rem;
+            border: 2px solid var(--bg-card);
+            transition: var(--transition);
+        }
+
+        .remove-btn:hover {
+            transform: scale(1.15);
+            background: #dc2626;
+        }
+
+        .remove-btn::before {
+            content: "×";
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           SUBMIT BUTTON
+           ============================================================ */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-gradient);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99,102,241,0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            text-align: center;
+            padding: 24px 16px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        .footer strong {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 10px 12px;
+            }
+            .header-title h1 {
+                font-size: 0.9rem;
+            }
+            .container {
+                padding: 16px 12px 32px;
+            }
+            .info-banner {
+                padding: 12px 16px;
+                gap: 10px;
+            }
+            .info-banner-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 0.85rem;
+            }
+            .info-banner-content h3 {
+                font-size: 0.85rem;
+            }
+            .info-banner-content p {
+                font-size: 0.75rem;
+            }
+            .form-input,
+            .form-textarea {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+            .upload-box {
+                width: 80px;
+                height: 80px;
+            }
+            .upload-box .plus-icon {
+                font-size: 1.2rem;
+            }
+            .upload-box span {
+                font-size: 0.55rem;
+            }
+            .preview-item img {
+                width: 80px;
+                height: 80px;
+            }
+            .submit-btn {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+    <header class="app-header">
+        <div class="header-content">
+            <button class="back-btn" onclick="history.back()" title="Kembali">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="header-title">
+              
+              <!--
+                <div class="header-logo">
+                    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1"/>
+                                <stop offset="50%" style="stop-color:#a855f7"/>
+                                <stop offset="100%" style="stop-color:#6366f1"/>
+                            </linearGradient>
+                        </defs>
+                        <ellipse cx="30" cy="30" rx="22" ry="12" fill="none" stroke="url(#logoGrad)" stroke-width="1.2" opacity="0.25" transform="rotate(-20,30,30)"/>
+                        <ellipse cx="30" cy="30" rx="22" ry="12" fill="none" stroke="url(#logoGrad)" stroke-width="1.2" opacity="0.25" transform="rotate(40,30,30)"/>
+                        <ellipse cx="30" cy="30" rx="22" ry="12" fill="none" stroke="url(#logoGrad)" stroke-width="1.2" opacity="0.25" transform="rotate(100,30,30)"/>
+                        <circle cx="30" cy="8" r="2.5" fill="url(#logoGrad)"/>
+                        <circle cx="52" cy="30" r="2" fill="url(#logoGrad)"/>
+                        <circle cx="30" cy="52" r="2.5" fill="url(#logoGrad)"/>
+                        <circle cx="30" cy="30" r="8" fill="url(#logoGrad)" opacity="0.1"/>
+                        <circle cx="30" cy="30" r="5" fill="none" stroke="url(#logoGrad)" stroke-width="2"/>
+                        <text x="30" y="34" text-anchor="middle" font-family="Arial" font-size="10" font-weight="700" fill="url(#logoGrad)" letter-spacing="0.5">AI</text>
+                    </svg>
+                </div>
+                -->
+                <div>
+                    <h1>Laporkan</h1>
+                    <span>Alovera AI</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         MAIN CONTAINER
+         ============================================================ -->
+    <div class="container">
+
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <div class="info-banner-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="info-banner-content">
+                <h3>Laporkan Masalah atau Berikan Saran</h3>
+                <p>Bantu kami meningkatkan Alovera AI. Laporkan bug, konten tidak pantas, atau berikan saran untuk pengembangan aplikasi.</p>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="formulir">
+
+            <!-- Nama / Email -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fa-solid fa-user"></i>
+                    Nama Pemohon / Email
+                </label>
+                <input 
+                    type="text" 
+                    id="nama_user" 
+                    class="form-input" 
+                    placeholder="Masukkan nama atau email Anda"
+                    required 
+                    maxlength="30" 
+                />
+                <div class="form-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Maksimal 30 karakter
+                </div>
+            </div>
+
+            <!-- Ulasan -->
+            <div class="form-group">
+                <label class="form-label">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    Masukkan Ulasan Anda
+                </label>
+                <textarea 
+                    id="alamatakad" 
+                    class="form-textarea" 
+                    rows="8" 
+                    placeholder="Jelaskan masalah yang Anda temui atau saran yang ingin Anda berikan..."
+                    required 
+                    maxlength="500"
+                ></textarea>
+                <div class="char-count" id="charCount">0 / 500</div>
+            </div>
+
+            <!-- Upload File -->
+            <div class="upload-section">
+                <label class="form-label">
+                    <i class="fa-solid fa-paperclip"></i>
+                    Upload File Tambahan
+                    <span class="optional">(Opsional)</span>
+                </label>
+                <div class="upload-container">
+                    <div class="upload-box" id="uploadTrigger">
+                        <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
+                        <span>Tambah File</span>
+                    </div>
+                    <input type="file" id="media" accept="image/*" multiple hidden>
+                    <div id="previewImages" class="preview"></div>
+                </div>
+                <div class="form-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Maksimal 3 foto, ukuran maksimal 10MB per file
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="btnKirim" class="submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+                Ajukan Permohonan
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        &copy; 2026 <strong>Alovera AI</strong>. All rights reserved.
+    </footer>
+
+    <!-- ============================================================
+         SUPABASE SDK
+         ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script>
+        // ============================================================
+        //  SUPABASE CONFIG
+        // ============================================================
+        const supabaseUrl = "https://ercfjeabaeaduilaatyf.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyY2ZqZWFiYWVhZHVpbGFhdHlmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYzMTg5ODEsImV4cCI6MjA5MTg5NDk4MX0.7dWxXP-HJ5krJUSo-Vrb7VZD2RJJl4EA59kxRJcNI3o";
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // ============================================================
+        //  FORM SUBMIT
+        // ============================================================
+        document.getElementById("formulir").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const btn = document.getElementById("btnKirim");
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+            btn.disabled = true;
+
+            // Ambil data
+            const nama_user = document.getElementById("nama_user").value;
+            const alamatakad = document.getElementById("alamatakad").value;
+            const files = getImages();
+
+            let mediaUrls = [];
+
+            // Upload gambar ke Supabase Storage
+            for (let file of files) {
+                const fileName = Date.now() + "-" + file.name;
+
+                const { data, error } = await supabaseClient.storage
+                    .from('media')
+                    .upload(fileName, file);
+
+                if (error) {
+                    console.log("UPLOAD ERROR:", error);
+                    alert("Upload gagal: " + error.message);
+                } else {
+                    console.log("UPLOAD SUCCESS:", data);
+                }
+
+                if (!error) {
+                    const { data: urlData } = supabaseClient
+                        .storage
+                        .from('media')
+                        .getPublicUrl(fileName);
+
+                    mediaUrls.push(urlData.publicUrl);
+                }
+            }
+
+            // Insert data ke tabel pesanan
+            const { error: insertError } = await supabaseClient
+                .from("pesanan")
+                .insert([{
+                    nama_user,
+                    kategori: "promo",
+                    alamatakad,
+                    media: mediaUrls,
+                    created_at: new Date()
+                }]);
+
+            if (insertError) {
+                console.log(insertError);
+                alert("Gagal kirim!");
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Ajukan Permohonan';
+                btn.disabled = false;
+                return;
+            }
+
+            // Sukses
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Terkirim';
+
+            setTimeout(() => {
+                alert("Terima kasih atas partisipasi Anda");
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Ajukan Permohonan';
+                btn.disabled = false;
+                document.getElementById("formulir").reset();
+                window.location.href = "index.html";
+            }, 1500);
+        });
+
+        // ============================================================
+        //  UPLOAD IMAGE PREVIEW
+        // ============================================================
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputMedia = document.getElementById("media");
+            const previewImages = document.getElementById("previewImages");
+            const trigger = document.getElementById("uploadTrigger");
+
+            let selectedImages = [];
+
+            // Klik tombol upload
+            trigger.onclick = () => inputMedia.click();
+
+            // Handle image selection
+            inputMedia.addEventListener("change", handleImages);
+
+            function handleImages(e) {
+                const files = Array.from(e.target.files);
+
+                files.forEach(file => {
+                    if (!file.type.startsWith("image/")) return;
+
+                    if (selectedImages.length >= 3) {
+                        alert("Maksimal 3 foto!");
+                        return;
+                    }
+
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert("Max 10MB!");
+                        return;
+                    }
+
+                    selectedImages.push(file);
+
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const wrapper = document.createElement("div");
+                        wrapper.classList.add("preview-item");
+
+                        const img = document.createElement("img");
+                        img.src = event.target.result;
+
+                        const remove = document.createElement("div");
+                        remove.classList.add("remove-btn");
+
+                        remove.onclick = () => {
+                            wrapper.remove();
+                            selectedImages = selectedImages.filter(f => f !== file);
+                        };
+
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(remove);
+                        previewImages.appendChild(wrapper);
+                    };
+
+                    reader.readAsDataURL(file);
+                });
+
+                inputMedia.value = "";
+            }
+
+            // Expose global
+            window.getImages = () => selectedImages;
+        });
+
+        // ============================================================
+        //  CHARACTER COUNTER
+        // ============================================================
+        const textarea = document.getElementById("alamatakad");
+        const charCount = document.getElementById("charCount");
+
+        textarea.addEventListener("input", () => {
+            charCount.innerText = textarea.value.length + " / 500";
+        });
+    </script>
+
+</body>
+</html>
